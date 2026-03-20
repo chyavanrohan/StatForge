@@ -3,28 +3,21 @@ import React, { useState, useEffect } from 'react';
 import { DataInput } from './components/DataInput';
 import { UnivariateAnalysis } from './components/UnivariateAnalysis';
 import { BivariateAnalysis } from './components/BivariateAnalysis';
-import { StockAnalysis } from './components/StockAnalysis';
 import { SplashScreen } from './components/SplashScreen';
 import { SettingsMenu } from './components/SettingsMenu';
-import { StockSearch } from './components/StockSearch';
 import { ComputationLoading } from './components/ComputationLoading';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { DataType, Dataset, MarketDataset } from './types';
+import { DataType, Dataset } from './types';
 import { Sigma } from './components/Icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import { 
-  X, 
-  Terminal, 
-  Search, 
-  Globe, 
-  ChevronDown
+  Terminal
 } from 'lucide-react';
 
 const AppContent: React.FC = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [dataset, setDataset] = useState<Dataset | null>(null);
   const [showStudio, setShowStudio] = useState(true);
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
@@ -52,7 +45,6 @@ const AppContent: React.FC = () => {
     // Allow components to mount and calculate behind the loading screen
     setTimeout(() => {
       setIsLoading(false);
-      setIsTerminalOpen(false);
       setShowStudio(false);
     }, 2000);
   };
@@ -71,35 +63,6 @@ const AppContent: React.FC = () => {
       
       {!showSplash && (
         <SettingsMenu />
-      )}
-
-      {!showSplash && (
-        <div className={`fixed left-1/2 -translate-x-1/2 top-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] no-print w-full max-w-xl px-2 sm:px-4 ${isTerminalOpen ? 'translate-y-0' : '-translate-y-[calc(100%-24px)]'}`}>
-          <div className="flex flex-col items-center">
-            <div className="w-full terminal-glass border-skin-accent/30 rounded-b-2xl overflow-hidden shadow-[0_10px_60px_rgba(0,0,0,0.9)]">
-              <div className="p-3 sm:p-4 border-b border-white/10 flex justify-between items-center bg-black/60">
-                <div className="flex items-center gap-2 text-skin-accent">
-                  <Globe className="w-4 h-4 animate-pulse" />
-                  <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest">Global Market Terminal</span>
-                </div>
-                <button onClick={() => setIsTerminalOpen(false)} className="p-1 hover:bg-white/10 rounded-md text-skin-muted transition-colors">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="p-4 sm:p-6">
-                 <StockSearch onResult={handleDataSubmit} />
-              </div>
-            </div>
-            <button 
-              onClick={() => setIsTerminalOpen(!isTerminalOpen)}
-              className={`group flex items-center justify-center gap-2 sm:gap-3 bg-skin-surface/90 border border-t-0 border-skin-accent/30 px-4 sm:px-8 py-2 rounded-b-xl shadow-2xl transition-all hover:bg-skin-accent ${isTerminalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:py-3'}`}
-            >
-              <Search className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-skin-accent group-hover:text-black transition-colors" />
-              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.4em] text-skin-accent group-hover:text-black transition-colors">MARKET TERMINAL</span>
-              <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-skin-accent group-hover:text-black transition-colors animate-bounce" />
-            </button>
-          </div>
-        </div>
       )}
 
       <header className="bg-skin-base border-b border-white/5 sticky top-0 z-40 no-print flex-none">
@@ -135,8 +98,6 @@ const AppContent: React.FC = () => {
               >
                  {dataset.type === DataType.BIVARIATE ? (
                    <BivariateAnalysis dataset={dataset} />
-                 ) : dataset.type === DataType.MARKET ? (
-                   <StockAnalysis dataset={dataset.data as MarketDataset} />
                  ) : (
                    <UnivariateAnalysis dataset={dataset} />
                  )}

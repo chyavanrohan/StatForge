@@ -3,49 +3,7 @@ export enum DataType {
   UNGROUPED = 'UNGROUPED', 
   GROUPED_DISCRETE = 'GROUPED_DISCRETE', 
   GROUPED_CONTINUOUS = 'GROUPED_CONTINUOUS', 
-  BIVARIATE = 'BIVARIATE',
-  MARKET = 'MARKET'
-}
-
-export interface StockPricePoint {
-  date: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-  isPrediction?: boolean;
-}
-
-export interface NewsItem {
-  title: string;
-  date: string;
-  source: string;
-  url: string;
-}
-
-export interface MarketPulseItem {
-  name: string;
-  value: number;
-  change: number;
-}
-
-export interface MarketDataset {
-  ticker: string;
-  currentPrice: number;
-  changePercent: number;
-  high52w: number;
-  low52w: number;
-  volatility: number;
-  history: StockPricePoint[];
-  prediction: {
-    forecast: StockPricePoint[];
-    formula: string;
-    rSquared: number;
-  };
-  news?: NewsItem[];
-  marketPulse?: MarketPulseItem[];
-  sources?: { uri: string; title?: string }[];
+  BIVARIATE = 'BIVARIATE'
 }
 
 export interface UngroupedDataPoint {
@@ -73,7 +31,7 @@ export type DataPoint = UngroupedDataPoint | GroupedDiscreteDataPoint | GroupedC
 
 export interface Dataset {
   type: DataType;
-  data: DataPoint[] | MarketDataset;
+  data: DataPoint[];
   totalFrequency?: number; // N
 }
 
