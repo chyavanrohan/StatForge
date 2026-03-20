@@ -26,10 +26,10 @@ export const SettingsMenu: React.FC = () => {
     return themes.filter(t => t.name.toLowerCase().includes(lowerQ));
   }, [searchQuery, themes]);
 
-  const closeSettings = useCallback((commit: boolean) => {
+  const closeSettings = useCallback((commit: boolean, themeToCommit?: Theme) => {
     setIsOpen(false);
     if (commit) {
-      setTheme(pendingTheme);
+      setTheme(themeToCommit || pendingTheme);
     } else {
       previewTheme(originalThemeRef.current);
     }
@@ -115,10 +115,16 @@ export const SettingsMenu: React.FC = () => {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6">
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
-        onClick={() => closeSettings(false)}
+        onClick={(e) => {
+          e.stopPropagation();
+          closeSettings(false);
+        }}
       />
 
-      <div className="relative w-full h-full sm:max-w-4xl sm:h-[600px] bg-[#0A0A0C] border-0 sm:border sm:border-white/10 rounded-none sm:rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+      <div 
+        className="relative w-full h-full sm:max-w-4xl sm:h-[600px] bg-[#0A0A0C] border-0 sm:border sm:border-white/10 rounded-none sm:rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Content Area */}
         <div className="flex-1 flex flex-col bg-transparent overflow-hidden">
@@ -133,7 +139,10 @@ export const SettingsMenu: React.FC = () => {
                   <span className="font-bold text-skin-text tracking-tight whitespace-nowrap">Theme Engine</span>
                 </div>
                 <button 
-                  onClick={() => closeSettings(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeSettings(false);
+                  }}
                   className="p-2 hover:bg-white/10 rounded-lg text-skin-muted transition-colors sm:hidden"
                 >
                   <X className="w-5 h-5" />
@@ -156,7 +165,10 @@ export const SettingsMenu: React.FC = () => {
               <div className="hidden sm:flex items-center gap-2">
                  <div className="text-[10px] bg-white/10 px-2 py-1 rounded text-skin-muted font-mono">CMD+K</div>
                  <button 
-                  onClick={() => closeSettings(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeSettings(false);
+                  }}
                   className="p-2 hover:bg-white/10 rounded-lg text-skin-muted transition-colors"
                  >
                    <X className="w-5 h-5" />
@@ -185,9 +197,11 @@ export const SettingsMenu: React.FC = () => {
                               : isCurrent ? 'bg-white/5 border-white/10' : 'border-transparent hover:bg-white/5'}
                           `}
                           onMouseEnter={() => handleThemeHover(theme, index)}
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.stopPropagation();
                             handleThemeHover(theme, index);
-                            closeSettings(true);
+                            // Small delay to ensure state updates and visual feedback
+                            setTimeout(() => closeSettings(true, theme), 50);
                           }}
                         >
                           <div className="flex items-center gap-4">

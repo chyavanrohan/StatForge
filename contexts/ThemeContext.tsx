@@ -204,21 +204,21 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [applyColorsToDom]);
 
   // Permanently set theme
-  const setTheme = (theme: Theme) => {
+  const setTheme = useCallback((theme: Theme) => {
     setCurrentThemeState(theme);
     applyColorsToDom(theme);
     localStorage.setItem('statforge-theme-id', theme.id);
     if (theme.id === 'custom') {
       localStorage.setItem('statforge-custom-accent', theme.colors.accent);
     }
-  };
+  }, [applyColorsToDom]);
 
   // Temporary preview (for hover/arrow keys)
-  const previewTheme = (theme: Theme) => {
+  const previewTheme = useCallback((theme: Theme) => {
     applyColorsToDom(theme);
-  };
+  }, [applyColorsToDom]);
 
-  const setCustomAccent = (color: string) => {
+  const setCustomAccent = useCallback((color: string) => {
     const customTheme: Theme = {
       ...currentTheme,
       id: 'custom',
@@ -226,12 +226,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
     setCurrentThemeState(customTheme);
     applyColorsToDom(customTheme);
-  };
+  }, [currentTheme, applyColorsToDom]);
 
-  const applyPreset = (name: string) => {
+  const applyPreset = useCallback((name: string) => {
     const theme = THEMES.find(t => t.name === name);
     if (theme) setTheme(theme);
-  };
+  }, [setTheme]);
 
   return (
     <ThemeContext.Provider value={{ 
