@@ -29,7 +29,7 @@ const SolverRow: React.FC<{
     <div className="w-full mb-3">
       <div 
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group glass-panel rounded-lg px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-white/[0.04] hover:border-skin-accent/20 transition-colors cursor-pointer"
+        className="group glass-panel rounded-lg px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-skin-surface/40 hover:border-skin-accent/20 transition-colors cursor-pointer"
       >
          <div className="flex items-center gap-4 flex-1">
             {/* Arrow Indicator */}
@@ -39,13 +39,13 @@ const SolverRow: React.FC<{
 
             {/* Index & Title */}
             <div className="flex items-center gap-4 min-w-0">
-               <span className="text-[10px] font-mono text-zinc-600 font-bold">{String(index + 1).padStart(2, '0')}</span>
-               <h3 className="text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors">{title}</h3>
+               <span className="text-[10px] font-mono text-skin-muted/60 font-bold">{String(index + 1).padStart(2, '0')}</span>
+               <h3 className="text-sm font-semibold text-skin-text/80 group-hover:text-skin-text transition-colors">{title}</h3>
             </div>
          </div>
 
          {/* Formula - Centered (Hidden on mobile) */}
-         <div className="hidden sm:flex flex-1 justify-center border-l border-r border-white/5 px-4 opacity-60 group-hover:opacity-100 transition-opacity">
+         <div className="hidden sm:flex flex-1 justify-center border-l border-r border-skin-muted/10 px-4 opacity-60 group-hover:opacity-100 transition-opacity">
              <Formula tex={formula} className="text-sm text-skin-muted" />
          </div>
 
@@ -70,27 +70,27 @@ const SolverRow: React.FC<{
             <div className="mt-2 glass-panel rounded-xl p-6 md:p-8 flex flex-col gap-8 shadow-2xl relative z-10 border-t-0 rounded-t-none border-skin-accent/10">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 <div className="space-y-3">
-                   <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-4">
+                   <div className="flex items-center gap-2 text-[10px] font-bold text-skin-muted uppercase tracking-wider mb-4">
                       <Hash className="w-3 h-3" /> Formula
                    </div>
-                   <div className="p-6 bg-black/60 rounded-xl border border-white/5 flex items-center justify-center min-h-[100px]">
-                      <Formula tex={formula} block className="text-white text-lg font-mono" />
+                   <div className="p-6 bg-skin-surface/60 rounded-xl border border-skin-muted/10 flex items-center justify-center min-h-[100px]">
+                      <Formula tex={formula} block className="text-skin-text text-lg font-mono" />
                    </div>
                 </div>
 
                 <div className="space-y-3">
-                   <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-4">
+                   <div className="flex items-center gap-2 text-[10px] font-bold text-skin-muted uppercase tracking-wider mb-4">
                       <Variable className="w-3 h-3" /> Breakdown
                    </div>
                    <div className="space-y-4">
                       {/* Origin Explanations (New) */}
                       {originExplanations && originExplanations.length > 0 && (
-                          <div className="p-4 bg-blue-500/5 rounded-xl border border-blue-500/10 space-y-2">
-                              <div className="flex items-center gap-2 text-[9px] font-bold text-blue-400/80 uppercase mb-1">
+                          <div className="p-4 bg-skin-accent/5 rounded-xl border border-skin-accent/10 space-y-2">
+                              <div className="flex items-center gap-2 text-[9px] font-bold text-skin-accent uppercase mb-1">
                                   <Search className="w-3 h-3" /> Variable Identification
                               </div>
                               {originExplanations.map((line, i) => (
-                                   <div key={i} className="text-xs text-zinc-400 font-mono leading-relaxed border-l-2 border-blue-500/20 pl-2">
+                                   <div key={i} className="text-xs text-skin-text/70 font-mono leading-relaxed border-l-2 border-skin-accent/20 pl-2">
                                       {line}
                                    </div>
                               ))}
@@ -101,36 +101,36 @@ const SolverRow: React.FC<{
                         <span className="text-[9px] font-bold text-skin-accent/60 uppercase block mb-1">Variable Extraction</span>
                         <div className="font-mono text-xs text-skin-text leading-loose">
                           {variables.split(', ').map((v, i) => (
-                            <span key={i} className="inline-block bg-white/5 px-2 py-0.5 rounded mr-2 mb-2">
+                            <span key={i} className="inline-block bg-skin-text/5 px-2 py-0.5 rounded mr-2 mb-2">
                                <Formula tex={v} />
                             </span>
                           ))}
                         </div>
                       </div>
-                      <div className="p-4 bg-white/[0.03] rounded-xl border border-white/5 space-y-4">
-                        <span className="text-[9px] font-bold text-zinc-500 uppercase block">Substitution</span>
+                      <div className="p-4 bg-skin-text/[0.03] rounded-xl border border-skin-text/5 space-y-4">
+                        <span className="text-[9px] font-bold text-skin-muted uppercase block">Substitution</span>
                         <div className="pl-2 border-l-2 border-skin-accent/20">
                           <Formula tex={substitution} block className="text-skin-muted font-mono text-sm" />
                         </div>
                         
                         {/* Granular Arithmetic Steps (Micro-Stepping) */}
                         {steps && steps.length > 0 && (
-                            <div className="space-y-3 mt-4 pt-4 border-t border-white/5">
-                              <span className="text-[9px] font-bold text-zinc-500 uppercase block mb-2">Arithmetic Micro-Steps</span>
+                            <div className="space-y-3 mt-4 pt-4 border-t border-skin-text/5">
+                              <span className="text-[9px] font-bold text-skin-muted uppercase block mb-2">Arithmetic Micro-Steps</span>
                               {steps.map((step, i) => (
-                                  <div key={i} className="relative pl-4 border-l border-white/10 pb-2 last:pb-0 last:border-0">
+                                  <div key={i} className="relative pl-4 border-l border-skin-text/10 pb-2 last:pb-0 last:border-0">
                                       {/* Step Connector Dot */}
-                                      <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-black border border-white/20"></div>
+                                      <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-skin-base border border-skin-text/20"></div>
                                       
                                       <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 group/step">
-                                          <span className="text-[9px] font-mono text-zinc-600 min-w-[30px] select-none">Step {i + 1}:</span>
+                                          <span className="text-[9px] font-mono text-skin-muted/80 min-w-[30px] select-none">Step {i + 1}:</span>
                                           <div className="flex-1 flex items-center justify-between gap-4">
-                                              <div className="text-zinc-300 text-sm bg-black/20 px-2 py-1 rounded transition-colors border border-transparent group-hover/step:border-white/10">
+                                              <div className="text-skin-text/90 text-sm bg-skin-text/5 px-2 py-1 rounded transition-colors border border-transparent group-hover/step:border-skin-text/10">
                                                   <Formula tex={step.latex} />
                                               </div>
                                               {/* Annotation Tag */}
                                               {step.annotation && (
-                                                  <span className="text-[9px] font-mono text-zinc-500 italic bg-white/5 px-2 py-0.5 rounded whitespace-nowrap hidden sm:inline-block">
+                                                  <span className="text-[9px] font-mono text-skin-muted italic bg-skin-text/5 px-2 py-0.5 rounded whitespace-nowrap hidden sm:inline-block">
                                                       [{step.annotation}]
                                                   </span>
                                               )}
@@ -144,12 +144,12 @@ const SolverRow: React.FC<{
                    </div>
                 </div>
 
-                <div className="space-y-3 lg:border-l lg:border-white/5 lg:pl-8">
-                   <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-4">
+                <div className="space-y-3 lg:border-l lg:border-skin-text/5 lg:pl-8">
+                   <div className="flex items-center gap-2 text-[10px] font-bold text-skin-muted uppercase tracking-wider mb-4">
                       <Repeat className="w-3 h-3" /> Result
                    </div>
                    <div className="flex flex-col items-center justify-center h-full gap-4 pb-4">
-                      <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-[0.4em]">Final_Output</div>
+                      <div className="text-[9px] font-bold text-skin-muted/60 uppercase tracking-[0.4em]">Final_Output</div>
                       <div className="relative px-8 py-4 bg-skin-accent/5 border border-skin-accent/20 rounded-xl">
                          <div className="text-5xl font-mono font-black text-skin-accent tabular-nums">
                           <ScrambleText value={answer} />
@@ -188,16 +188,16 @@ export const UnivariateAnalysis: React.FC<Props> = ({ dataset }) => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 no-print">
-        <div className="flex space-x-1 bg-black/40 p-1 rounded-xl border border-white/5 w-fit">
+        <div className="flex space-x-1 bg-skin-surface/40 p-1 rounded-xl border border-skin-text/5 w-fit">
            <button
               onClick={() => setActiveTab('dashboard')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${activeTab === 'dashboard' ? 'bg-skin-accent text-black shadow-lg shadow-skin-accent/20' : 'text-skin-muted hover:text-skin-text hover:bg-white/5'}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${activeTab === 'dashboard' ? 'bg-skin-accent text-skin-base shadow-lg shadow-skin-accent/20' : 'text-skin-muted hover:text-skin-text hover:bg-skin-text/5'}`}
            >
               <LayoutDashboard className="w-4 h-4" /> Solver Dashboard
            </button>
            <button
               onClick={() => setActiveTab('table')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${activeTab === 'table' ? 'bg-skin-accent text-black shadow-lg shadow-skin-accent/20' : 'text-skin-muted hover:text-skin-text hover:bg-white/5'}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${activeTab === 'table' ? 'bg-skin-accent text-skin-base shadow-lg shadow-skin-accent/20' : 'text-skin-muted hover:text-skin-text hover:bg-skin-text/5'}`}
            >
               <TableIcon className="w-4 h-4" /> Computation Matrix
            </button>
@@ -216,8 +216,8 @@ export const UnivariateAnalysis: React.FC<Props> = ({ dataset }) => {
       ) : (
         <div className="flex flex-col gap-2 pb-20">
             <div className="mb-4">
-              <h2 className="text-2xl font-bold text-white tracking-tight">Step-by-Step Statistical Derivation</h2>
-              <p className="text-sm text-zinc-500 font-mono mt-1">Engine_v2.6 &bull; Micro-Stepping Enabled &bull; 4dp Precision</p>
+              <h2 className="text-2xl font-bold text-skin-text tracking-tight">Step-by-Step Statistical Derivation</h2>
+              <p className="text-sm text-skin-muted font-mono mt-1">Engine_v2.6 &bull; Micro-Stepping Enabled &bull; 4dp Precision</p>
             </div>
 
             <SolverRow 

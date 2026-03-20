@@ -10,10 +10,10 @@ interface Props {
 export const ComputationLoading: React.FC<Props> = ({ isLoading }) => {
   const [step, setStep] = useState(0);
   const steps = [
-    { icon: <Database className="w-5 h-5" />, text: "Parsing Dataset Structure...", color: "text-blue-400" },
-    { icon: <Binary className="w-5 h-5" />, text: "Executing Statistical Kernels...", color: "text-purple-400" },
-    { icon: <Cpu className="w-5 h-5" />, text: "Optimizing Regression Models...", color: "text-emerald-400" },
-    { icon: <ShieldCheck className="w-5 h-5" />, text: "Validating Computation Integrity...", color: "text-amber-400" },
+    { icon: <Database className="w-5 h-5" />, text: "Parsing Dataset Structure...", color: "text-skin-accent" },
+    { icon: <Binary className="w-5 h-5" />, text: "Executing Statistical Kernels...", color: "text-skin-accent/80" },
+    { icon: <Cpu className="w-5 h-5" />, text: "Optimizing Regression Models...", color: "text-skin-accent/70" },
+    { icon: <ShieldCheck className="w-5 h-5" />, text: "Validating Computation Integrity...", color: "text-skin-accent/60" },
     { icon: <Zap className="w-5 h-5" />, text: "Finalizing Dashboard State...", color: "text-skin-accent" }
   ];
 
@@ -34,12 +34,12 @@ export const ComputationLoading: React.FC<Props> = ({ isLoading }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[100] bg-skin-bg flex flex-col items-center justify-center"
         >
           {/* Background Grid Effect */}
           <div className="absolute inset-0 opacity-20 pointer-events-none" 
                style={{ 
-                 backgroundImage: `radial-gradient(circle at 2px 2px, #333 1px, transparent 0)`,
+                 backgroundImage: `radial-gradient(circle at 2px 2px, rgb(var(--color-text-muted)) 1px, transparent 0)`,
                  backgroundSize: '40px 40px' 
                }} 
           />
@@ -85,12 +85,12 @@ export const ComputationLoading: React.FC<Props> = ({ isLoading }) => {
 
             <div className="w-full space-y-8">
               <div className="text-center space-y-2">
-                <h2 className="text-2xl font-bold text-white tracking-tighter uppercase">StatForge <span className="text-skin-accent">Engine</span></h2>
-                <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.5em]">Computation_In_Progress</p>
+                <h2 className="text-2xl font-bold text-skin-text tracking-tighter uppercase">StatForge <span className="text-skin-accent">Engine</span></h2>
+                <p className="text-[10px] font-mono text-skin-muted uppercase tracking-[0.5em]">Computation_In_Progress</p>
               </div>
 
               {/* Progress Bar */}
-              <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+              <div className="h-1 w-full bg-skin-surface border border-skin-muted/10 rounded-full overflow-hidden">
                 <motion.div 
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
@@ -110,9 +110,9 @@ export const ComputationLoading: React.FC<Props> = ({ isLoading }) => {
                       x: step === i ? 0 : -10,
                       scale: step === i ? 1.05 : 1
                     }}
-                    className={`flex items-center gap-4 transition-all duration-300 ${step === i ? s.color : 'text-zinc-600'}`}
+                    className={`flex items-center gap-4 transition-all duration-300 ${step === i ? s.color : 'text-skin-muted'}`}
                   >
-                    <div className={`p-2 rounded-lg bg-white/5 border border-white/5 ${step === i ? 'border-current/30' : ''}`}>
+                    <div className={`p-2 rounded-lg bg-skin-surface/40 border border-skin-muted/10 ${step === i ? 'border-current/30' : ''}`}>
                       {s.icon}
                     </div>
                     <span className="text-xs font-mono font-bold uppercase tracking-widest">{s.text}</span>
@@ -130,8 +130,8 @@ export const ComputationLoading: React.FC<Props> = ({ isLoading }) => {
               </div>
             </div>
 
-            <div className="pt-8 border-t border-white/5 w-full text-center">
-              <p className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest">StatForge v2.6.4 // Kernel_v8_Stable</p>
+            <div className="pt-8 border-t border-skin-muted/10 w-full text-center">
+              <p className="text-[9px] font-mono text-skin-muted uppercase tracking-widest">StatForge v2.6.4 // Kernel_v8_Stable</p>
             </div>
           </div>
         </motion.div>

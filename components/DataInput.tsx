@@ -477,11 +477,11 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
 
   const getModeColor = (mode: DataType) => {
     switch (mode) {
-      case DataType.UNGROUPED: return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case DataType.GROUPED_DISCRETE: return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-      case DataType.GROUPED_CONTINUOUS: return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
+      case DataType.UNGROUPED: return 'bg-skin-accent/10 text-skin-accent border-skin-accent/20';
+      case DataType.GROUPED_DISCRETE: return 'bg-skin-accent/10 text-skin-accent border-skin-accent/20';
+      case DataType.GROUPED_CONTINUOUS: return 'bg-skin-accent/10 text-skin-accent border-skin-accent/20';
       case DataType.BIVARIATE: return 'bg-skin-accent/20 text-skin-accent border-skin-accent/30';
-      default: return 'bg-zinc-500/20 text-zinc-400';
+      default: return 'bg-skin-muted/10 text-skin-muted';
     }
   };
 
@@ -513,10 +513,10 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
       {/* --- MODE SELECTOR --- */}
       <div className="space-y-3">
          <div className="flex items-center justify-between">
-            <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Analysis Mode</label>
+            <label className="text-[10px] font-bold text-skin-muted uppercase tracking-widest">Analysis Mode</label>
             <button 
               onClick={() => setShowHistory(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-skin-accent/40 hover:text-skin-accent transition-all text-[10px] font-bold uppercase tracking-widest text-zinc-400 group"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-skin-surface/40 border border-skin-muted/10 hover:bg-skin-surface/60 hover:border-skin-accent/40 hover:text-skin-accent transition-all text-[10px] font-bold uppercase tracking-widest text-skin-muted group"
             >
               <RotateCcw className="w-3 h-3 group-hover:-rotate-180 transition-transform duration-500" />
               History
@@ -528,7 +528,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                 key={mode.type}
                 onClick={() => setInputType(mode.type)}
                 className={`px-3 py-3 rounded-xl text-[10px] font-mono font-bold transition-colors duration-300 border text-left group relative overflow-hidden ${
-                inputType === mode.type ? 'bg-skin-surface text-skin-accent border-skin-accent/40 shadow-xl' : 'bg-black/40 text-skin-muted border-white/5 hover:border-white/20'
+                inputType === mode.type ? 'bg-skin-surface text-skin-accent border-skin-accent/40 shadow-xl' : 'bg-skin-surface/20 text-skin-muted border-skin-muted/10 hover:border-skin-muted/30'
                 }`}
             >
                 <div className={`absolute inset-0 w-1 bg-skin-accent transition-opacity duration-300 ${inputType === mode.type ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'}`}></div>
@@ -539,19 +539,19 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
       </div>
 
       {/* --- FORMAT GUIDE --- */}
-      <div className="p-4 bg-black/40 border border-white/5 rounded-xl animate-in fade-in slide-in-from-top-2 duration-500">
+      <div className="p-4 bg-skin-surface/20 border border-skin-muted/10 rounded-xl animate-in fade-in slide-in-from-top-2 duration-500">
         <div className="flex items-center gap-2 mb-2">
           <Database className="w-3 h-3 text-skin-accent" />
-          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Input Format Guide</span>
+          <span className="text-[10px] font-bold text-skin-muted uppercase tracking-widest">Input Format Guide</span>
         </div>
-        <div className="bg-black/60 p-3 rounded-lg border border-white/5 font-mono">
+        <div className="bg-skin-surface/40 p-3 rounded-lg border border-skin-muted/10 font-mono">
           <div className="text-skin-accent text-xs mb-1">
             {inputType === DataType.UNGROUPED && "12, 15, 20, 25..."}
             {inputType === DataType.GROUPED_DISCRETE && "Value: Frequency (e.g. 10: 5)"}
             {inputType === DataType.GROUPED_CONTINUOUS && "Lower-Upper: Frequency (e.g. 10-20: 5)"}
             {inputType === DataType.BIVARIATE && "X, Y (e.g. 10, 15)"}
           </div>
-          <div className="text-[9px] text-zinc-500 leading-relaxed">
+          <div className="text-[9px] text-skin-muted/70 leading-relaxed">
             {inputType === DataType.UNGROUPED && "Enter raw values separated by commas or spaces."}
             {inputType === DataType.GROUPED_DISCRETE && "Enter each value and its frequency separated by a colon."}
             {inputType === DataType.GROUPED_CONTINUOUS && "Enter class intervals and frequencies (one per line)."}
@@ -561,8 +561,8 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
       </div>
 
       {/* --- INPUT AREA --- */}
-      <div className="border-t border-white/10 pt-6">
-        <div className="flex bg-black/60 p-1 rounded-xl mb-4 border border-white/5">
+      <div className="border-t border-skin-muted/10 pt-6">
+        <div className="flex bg-skin-surface/40 p-1 rounded-xl mb-4 border border-skin-muted/10">
             <button onClick={() => setActiveTab('manual')} className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 ${activeTab === 'manual' ? 'bg-skin-surface text-skin-accent shadow-lg' : 'text-skin-muted'}`}><Keyboard className="w-3.5 h-3.5" /> Input</button>
             <button onClick={() => setActiveTab('import')} className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 ${activeTab === 'import' ? 'bg-skin-surface text-skin-accent shadow-lg' : 'text-skin-muted'}`}><Upload className="w-3.5 h-3.5" /> Upload</button>
         </div>
@@ -573,12 +573,12 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                     value={inputText}
                     onChange={handleTextChange}
                     rows={10}
-                    className="w-full rounded-xl bg-black border-2 border-white/5 text-skin-accent font-mono text-sm p-4 focus:outline-none focus:border-skin-accent/40 shadow-inner resize-none"
+                    className="w-full rounded-xl bg-skin-surface/40 border-2 border-skin-muted/10 text-skin-accent font-mono text-sm p-4 focus:outline-none focus:border-skin-accent/40 shadow-inner resize-none"
                     placeholder={inputType === DataType.BIVARIATE ? "10, 15\n20, 25..." : (inputType === DataType.GROUPED_CONTINUOUS ? "10-20: 5\n20-30: 3" : "12, 15, 20...")}
                 />
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                        <span className="text-[9px] text-zinc-600 font-mono font-bold uppercase tracking-widest">{inputType}</span>
+                        <span className="text-[9px] text-skin-muted/60 font-mono font-bold uppercase tracking-widest">{inputType}</span>
                         {inputType !== DataType.BIVARIATE && (
                             <span className="text-[9px] text-skin-accent/50 font-mono bg-skin-accent/10 px-1.5 rounded">N={rawValues.length}</span>
                         )}
@@ -593,19 +593,19 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
               {!stagingData ? (
                 <div className="space-y-4 animate-in fade-in duration-500">
                   <div 
-                    className="border-2 border-dashed border-white/10 rounded-2xl p-6 sm:p-10 text-center hover:bg-skin-accent/5 cursor-pointer transition-colors group relative overflow-hidden" 
+                    className="border-2 border-dashed border-skin-muted/20 rounded-2xl p-6 sm:p-10 text-center hover:bg-skin-accent/5 cursor-pointer transition-colors group relative overflow-hidden" 
                     onClick={() => fileInputRef.current?.click()}
                   >
                       <div className="absolute inset-0 bg-gradient-to-br from-skin-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                       <FileSpreadsheet className="w-8 h-8 sm:w-10 sm:h-10 text-skin-muted mx-auto mb-4 group-hover:text-skin-accent transition-colors" />
                       <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-skin-text">Smart Import Engine</h3>
-                      <p className="text-[9px] sm:text-[10px] text-zinc-500 mt-2">Drop .CSV or .XLSX for Auto-Detection</p>
+                      <p className="text-[9px] sm:text-[10px] text-skin-muted/60 mt-2">Drop .CSV or .XLSX for Auto-Detection</p>
                       <input type="file" ref={fileInputRef} className="hidden" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} />
                   </div>
                   
                   <button 
                     onClick={() => setShowFormatGuide(true)}
-                    className="w-full flex items-center justify-center gap-2 text-[10px] font-bold text-zinc-500 hover:text-skin-accent uppercase tracking-widest transition-colors py-2 border border-white/5 rounded-xl hover:bg-white/5"
+                    className="w-full flex items-center justify-center gap-2 text-[10px] font-bold text-skin-muted hover:text-skin-accent uppercase tracking-widest transition-colors py-2 border border-skin-muted/10 rounded-xl hover:bg-skin-surface/20"
                   >
                     <HelpCircle className="w-3.5 h-3.5" />
                     How to format my file?
@@ -620,31 +620,31 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                       </div>
                       <div>
                         <h3 className="text-xs font-bold text-skin-text uppercase tracking-wider">Column Staging</h3>
-                        <p className="text-[9px] text-zinc-500 font-mono">Select columns to map to {inputType.replace(/_/g, ' ')}</p>
+                        <p className="text-[9px] text-skin-muted/60 font-mono">Select columns to map to {inputType.replace(/_/g, ' ')}</p>
                       </div>
                     </div>
                     <button 
                       onClick={() => setStagingData(null)}
-                      className="p-2 hover:bg-white/5 rounded-lg text-zinc-500 hover:text-white transition-colors"
+                      className="p-2 hover:bg-skin-surface/40 rounded-lg text-skin-muted hover:text-skin-text transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </div>
 
-                  <div className="bg-black/40 border border-white/5 rounded-2xl overflow-hidden">
+                  <div className="bg-skin-surface/20 border border-skin-muted/10 rounded-2xl overflow-hidden">
                     <div className="overflow-x-auto custom-scrollbar">
                       <table className="w-full text-left border-collapse">
                         <thead>
-                          <tr className="bg-white/5">
+                          <tr className="bg-skin-surface/40">
                             {stagingData[0].map((header, idx) => (
                               <th 
                                 key={idx} 
                                 onClick={() => toggleColumn(idx)}
-                                className={`px-4 py-4 cursor-pointer transition-all border-b border-white/5 min-w-[120px] ${selectedCols.includes(idx) ? 'bg-skin-accent/10' : 'hover:bg-white/5'}`}
+                                className={`px-4 py-4 cursor-pointer transition-all border-b border-skin-muted/10 min-w-[120px] ${selectedCols.includes(idx) ? 'bg-skin-accent/10' : 'hover:bg-skin-surface/20'}`}
                               >
                                 <div className="flex flex-col gap-2">
                                   <div className="flex items-center justify-between">
-                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedCols.includes(idx) ? 'text-skin-accent' : 'text-zinc-500'}`}>
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedCols.includes(idx) ? 'text-skin-accent' : 'text-skin-muted'}`}>
                                       {selectedCols.includes(idx) ? (
                                         <div className="flex items-center gap-1">
                                           <CheckCircle2 className="w-3 h-3" />
@@ -652,11 +652,11 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                                         </div>
                                       ) : 'Col ' + (idx + 1)}
                                     </span>
-                                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedCols.includes(idx) ? 'bg-skin-accent border-skin-accent' : 'border-white/20'}`}>
-                                      {selectedCols.includes(idx) && <div className="w-1.5 h-1.5 bg-black rounded-full" />}
+                                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedCols.includes(idx) ? 'bg-skin-accent border-skin-accent' : 'border-skin-muted/30'}`}>
+                                      {selectedCols.includes(idx) && <div className="w-1.5 h-1.5 bg-skin-bg rounded-full" />}
                                     </div>
                                   </div>
-                                  <span className="text-xs font-mono text-white truncate max-w-[100px]">{String(header || 'Unnamed')}</span>
+                                  <span className="text-xs font-mono text-skin-text truncate max-w-[100px]">{String(header || 'Unnamed')}</span>
                                 </div>
                               </th>
                             ))}
@@ -664,9 +664,9 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                         </thead>
                         <tbody>
                           {stagingData.slice(1, 6).map((row, rowIdx) => (
-                            <tr key={rowIdx} className="border-b border-white/[0.02] last:border-0">
+                            <tr key={rowIdx} className="border-b border-skin-muted/5 last:border-0">
                               {row.map((cell, colIdx) => (
-                                <td key={colIdx} className={`px-4 py-3 text-[10px] font-mono transition-colors ${selectedCols.includes(colIdx) ? 'bg-skin-accent/5 text-skin-accent' : 'text-zinc-500'}`}>
+                                <td key={colIdx} className={`px-4 py-3 text-[10px] font-mono transition-colors ${selectedCols.includes(colIdx) ? 'bg-skin-accent/5 text-skin-accent' : 'text-skin-muted/60'}`}>
                                   {String(cell || '-')}
                                 </td>
                               ))}
@@ -676,8 +676,8 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                       </table>
                     </div>
                     {stagingData.length > 6 && (
-                      <div className="p-3 bg-black/20 text-center border-t border-white/5">
-                        <span className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest">Showing 5 of {stagingData.length - 1} rows</span>
+                      <div className="p-3 bg-skin-surface/20 text-center border-t border-skin-muted/10">
+                        <span className="text-[9px] text-skin-muted/40 font-mono uppercase tracking-widest">Showing 5 of {stagingData.length - 1} rows</span>
                       </div>
                     )}
                   </div>
@@ -688,11 +688,11 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                       <span className="text-[10px] font-bold text-skin-accent uppercase tracking-widest">Smart Cleaning Active</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="flex items-center gap-2 text-[9px] text-zinc-400 font-mono">
+                      <div className="flex items-center gap-2 text-[9px] text-skin-muted/60 font-mono">
                         <Filter className="w-3 h-3" />
                         Sanitization: Strip symbols ($, % ,)
                       </div>
-                      <div className="flex items-center gap-2 text-[9px] text-zinc-400 font-mono">
+                      <div className="flex items-center gap-2 text-[9px] text-skin-muted/60 font-mono">
                         <ArrowRight className="w-3 h-3" />
                         Rounding: Strictly 2 Decimals
                       </div>
@@ -709,17 +709,17 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                   <div className="flex gap-3">
                     <button 
                       onClick={() => setStagingData(null)}
-                      className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-zinc-400 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-colors"
+                      className="flex-1 px-4 py-3 rounded-xl border border-skin-muted/20 text-skin-muted text-[10px] font-bold uppercase tracking-widest hover:bg-skin-surface/20 transition-colors"
                     >
                       Back
                     </button>
                     <button 
                       onClick={confirmMapping}
                       disabled={isProcessing}
-                      className="flex-[2] bg-skin-accent hover:brightness-110 disabled:opacity-50 text-black px-6 py-3 rounded-xl text-[10px] font-black tracking-[0.2em] uppercase transition-all shadow-lg shadow-skin-accent/20 flex justify-center items-center gap-2"
+                      className="flex-[2] bg-skin-accent hover:brightness-110 disabled:opacity-50 text-skin-bg px-6 py-3 rounded-xl text-[10px] font-black tracking-[0.2em] uppercase transition-all shadow-lg shadow-skin-accent/20 flex justify-center items-center gap-2"
                     >
                       {isProcessing ? (
-                        <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-skin-bg/30 border-t-skin-bg rounded-full animate-spin" />
                       ) : (
                         <>Confirm & Clean <ArrowRight className="w-3.5 h-3.5" /></>
                       )}
@@ -757,21 +757,21 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                  <div className="flex flex-col items-center justify-center h-full text-skin-muted gap-4 opacity-50"><Database className="w-12 h-12 stroke-1" /><span className="text-xs font-mono uppercase tracking-widest">No Records Found</span></div>
                ) : (
                  history.map((item) => (
-                   <div key={item.id} onClick={() => restoreHistoryItem(item)} className="group relative bg-black/40 border border-white/5 hover:border-skin-accent/50 rounded-xl p-4 cursor-pointer transition-all hover:bg-white/5 hover:shadow-lg hover:shadow-skin-accent/5 overflow-hidden">
+                   <div key={item.id} onClick={() => restoreHistoryItem(item)} className="group relative bg-skin-surface/20 border border-skin-muted/10 hover:border-skin-accent/50 rounded-xl p-4 cursor-pointer transition-all hover:bg-skin-surface/40 hover:shadow-lg hover:shadow-skin-accent/5 overflow-hidden">
                       <div className="flex justify-between items-start mb-3">
                          <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded border ${getModeColor(item.mode)}`}>{item.mode.replace(/_/g, ' ')}</span>
-                         <span className="text-[10px] font-mono text-zinc-500">{item.dateStr}</span>
+                         <span className="text-[10px] font-mono text-skin-muted/60">{item.dateStr}</span>
                       </div>
-                      <div className="font-mono text-xs text-zinc-400 line-clamp-2 leading-relaxed bg-black/30 p-2 rounded border border-white/5 mb-2 group-hover:text-skin-text transition-colors">{item.rawData}</div>
+                      <div className="font-mono text-xs text-skin-muted/80 line-clamp-2 leading-relaxed bg-skin-surface/40 p-2 rounded border border-skin-muted/10 mb-2 group-hover:text-skin-text transition-colors">{item.rawData}</div>
                       <div className="flex items-center justify-between mt-2">
                          <span className="text-[9px] text-skin-accent opacity-0 group-hover:opacity-100 transition-opacity font-bold uppercase tracking-widest flex items-center gap-1"><RotateCcw className="w-3 h-3" /> Restore</span>
-                         <button onClick={(e) => deleteHistoryItem(e, item.id)} className="p-1.5 text-zinc-600 hover:text-red-400 hover:bg-red-500/10 rounded-md transition-all opacity-0 group-hover:opacity-100" title="Remove from history"><Trash2 className="w-3.5 h-3.5" /></button>
+                         <button onClick={(e) => deleteHistoryItem(e, item.id)} className="p-1.5 text-skin-muted/40 hover:text-red-400 hover:bg-red-500/10 rounded-md transition-all opacity-0 group-hover:opacity-100" title="Remove from history"><Trash2 className="w-3.5 h-3.5" /></button>
                       </div>
                    </div>
                  ))
                )}
             </div>
-            <div className="p-4 border-t border-white/10 bg-black/20 text-center"><span className="text-[9px] text-zinc-600 font-mono">Storage: {history.length} / 20 Slots Used</span></div>
+            <div className="p-4 border-t border-skin-muted/10 bg-skin-surface/20 text-center"><span className="text-[9px] text-skin-muted/40 font-mono">Storage: {history.length} / 20 Slots Used</span></div>
           </div>
         </div>
       )}

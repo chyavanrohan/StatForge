@@ -122,7 +122,7 @@ export const SettingsMenu: React.FC = () => {
       />
 
       <div 
-        className="relative w-full h-full sm:max-w-4xl sm:h-[600px] bg-[#0A0A0C] border-0 sm:border sm:border-white/10 rounded-none sm:rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full h-full sm:max-w-4xl sm:h-[600px] bg-skin-surface border-0 sm:border sm:border-skin-border/10 rounded-none sm:rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         
@@ -130,7 +130,7 @@ export const SettingsMenu: React.FC = () => {
         <div className="flex-1 flex flex-col bg-transparent overflow-hidden">
           <div className="h-full flex flex-col">
             {/* Header with Search */}
-            <div className="p-4 sm:p-6 border-b border-white/5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="p-4 sm:p-6 border-b border-skin-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center justify-between w-full sm:w-auto">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-skin-accent/10 rounded-lg">
@@ -178,7 +178,7 @@ export const SettingsMenu: React.FC = () => {
 
             <div className="flex-1 flex flex-col sm:flex-row overflow-hidden">
               {/* Theme List */}
-              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar border-b sm:border-b-0 sm:border-r border-white/5">
+              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar border-b sm:border-b-0 sm:border-r border-skin-border/10">
                 <div className="text-[10px] font-mono text-skin-muted uppercase tracking-widest mb-4 px-2">Available Themes</div>
                 <ul ref={listRef} className="space-y-1">
                   {filteredThemes.length === 0 ? (
@@ -223,7 +223,7 @@ export const SettingsMenu: React.FC = () => {
               </div>
 
               {/* Theme Engine Panel */}
-              <div className="w-full sm:w-80 p-6 bg-black/20 overflow-y-auto custom-scrollbar flex flex-col">
+              <div className="w-full sm:w-80 p-6 bg-skin-base/20 overflow-y-auto custom-scrollbar flex flex-col">
                 <div className="flex items-center gap-2 mb-6">
                   <Palette className="w-4 h-4 text-skin-accent" />
                   <span className="text-xs font-bold text-skin-text tracking-widest uppercase">Theme Engine</span>
@@ -267,7 +267,7 @@ export const SettingsMenu: React.FC = () => {
             </div>
 
             {/* Footer */}
-            <div className="px-4 sm:px-6 py-4 bg-black/40 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="px-4 sm:px-6 py-4 bg-skin-base/40 border-t border-skin-border/10 flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="hidden sm:flex items-center gap-6 text-[10px] text-skin-muted font-mono">
                 <div className="flex items-center gap-1.5">
                   <span className="text-skin-accent">↑↓</span> Navigate

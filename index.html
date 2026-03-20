@@ -13,6 +13,7 @@
         extend: {
           colors: {
             skin: {
+              bg: 'rgb(var(--color-bg) / <alpha-value>)',
               base: 'rgb(var(--color-bg) / <alpha-value>)',
               surface: 'rgb(var(--color-surface) / <alpha-value>)',
               accent: 'rgb(var(--color-accent) / <alpha-value>)',
@@ -92,8 +93,8 @@
     /* Heavy Glassmorphism for Panels */
     .glass-panel {
       position: relative;
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgb(var(--color-surface) / 0.8);
+      border: 1px solid rgb(var(--color-text-main) / 0.05);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
       overflow: hidden;
       isolation: isolate;
@@ -111,9 +112,9 @@
     }
 
     .terminal-glass {
-      background: rgba(10, 10, 12, 0.9);
-      border: 1px solid rgba(0, 255, 255, 0.15);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(0, 255, 255, 0.05);
+      background: rgb(var(--color-surface) / 0.9);
+      border: 1px solid rgb(var(--color-accent) / 0.15);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgb(var(--color-accent) / 0.05);
     }
     .terminal-glow-cyan {
       opacity: 1;
@@ -132,7 +133,7 @@
       position: absolute;
       width: 100%;
       height: 120px;
-      background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.1), transparent);
+      background: linear-gradient(to bottom, transparent, rgb(var(--color-accent) / 0.1), transparent);
       opacity: 0.4;
       pointer-events: none;
       animation: scanline 4s linear infinite;
@@ -180,7 +181,7 @@
   </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="antialiased selection:bg-terminal-cyan/30 selection:text-terminal-cyan">
+<body class="antialiased selection:bg-skin-accent/30 selection:text-skin-accent">
   <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>

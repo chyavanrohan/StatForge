@@ -14,7 +14,7 @@ interface Props {
 export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, className = '' }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<ApexCharts | null>(null);
-  const { colors } = useTheme();
+  const { colors, currentTheme } = useTheme();
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -47,18 +47,18 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
         fontFamily: 'Space Mono, monospace',
       },
       theme: {
-        mode: 'dark',
+        mode: currentTheme.mode,
         palette: 'palette1',
       },
       grid: {
-        borderColor: 'rgba(255,255,255,0.05)',
+        borderColor: `rgba(${colors.text}, 0.05)`,
         strokeDashArray: 4,
         xaxis: { lines: { show: true } },   
         yaxis: { lines: { show: true } },
       },
       dataLabels: { enabled: false },
       tooltip: {
-        theme: 'dark',
+        theme: currentTheme.mode,
         style: { fontSize: '12px' },
         x: { show: true },
         marker: { show: true },
@@ -140,18 +140,18 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
             strokeWidth: 0,
             hover: { size: 9 }
         },
-        colors: ['#FFFFFF', colors.accent], // Points white, Line accent
+        colors: [currentTheme.mode === 'dark' ? '#FFFFFF' : colors.text, colors.accent], // Points white/text, Line accent
         xaxis: {
             type: 'numeric',
             tickAmount: 10,
-            labels: { style: { colors: '#71717A', fontSize: '10px' } },
+            labels: { style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' } },
             axisBorder: { show: false },
             axisTicks: { show: false },
             tooltip: { enabled: false }
         },
         yaxis: {
             tickAmount: 7,
-            labels: { style: { colors: '#71717A', fontSize: '10px' } },
+            labels: { style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' } },
         }
       };
     } 
@@ -227,14 +227,14 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
         xaxis: {
             categories: categories,
             labels: {
-                style: { colors: '#71717A', fontSize: '10px' },
+                style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' },
                 rotate: -45
             },
             axisBorder: { show: false },
             axisTicks: { show: false }
         },
         yaxis: {
-            labels: { style: { colors: '#71717A', fontSize: '10px' } }
+            labels: { style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' } }
         }
       };
     }
@@ -253,7 +253,7 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
   return (
     <div className={`relative ${className}`}>
         {/* Glass Card Container */}
-        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
+        <div className="bg-skin-surface/40 border border-skin-border/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
             {/* Header */}
             <div className="flex items-center justify-between mb-6 relative z-10">
                 <div className="flex items-center gap-3">
@@ -264,18 +264,18 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
                         }
                     </div>
                     <div>
-                        <h3 className="text-sm font-bold text-white uppercase tracking-widest">{title || 'Data Visualization'}</h3>
+                        <h3 className="text-sm font-bold text-skin-text uppercase tracking-widest">{title || 'Data Visualization'}</h3>
                         <div className="flex items-center gap-2 mt-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                            <span className="text-[10px] text-zinc-500 font-mono">Live Interactive Engine</span>
+                            <span className="text-[10px] text-skin-muted font-mono">Live Interactive Engine</span>
                         </div>
                     </div>
                 </div>
                 
                 {dataset.type === DataType.BIVARIATE && (
-                    <div className="px-3 py-1 bg-black/40 rounded-full border border-white/5 flex items-center gap-2">
+                    <div className="px-3 py-1 bg-skin-surface/40 rounded-full border border-skin-border/10 flex items-center gap-2">
                          <TrendingUp className="w-3 h-3 text-skin-accent" />
-                         <span className="text-[9px] text-zinc-400 font-mono">Least Squares Regression</span>
+                         <span className="text-[9px] text-skin-muted font-mono">Least Squares Regression</span>
                     </div>
                 )}
             </div>

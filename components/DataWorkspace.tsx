@@ -16,7 +16,7 @@ import {
   HelpCircle,
   X
 } from 'lucide-react';
-import { List } from 'react-window';
+import { FixedSizeList } from 'react-window';
 import { DataType, Dataset } from '../types';
 import { FormatGuideModal } from './FormatGuideModal';
 
@@ -183,12 +183,12 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
   };
 
   const Row = ({ index, style }: { index: number, style: React.CSSProperties }) => (
-    <div style={style} className="flex border-b border-white/[0.02] hover:bg-white/[0.02] transition-colors items-center px-4">
-      <div className="w-12 flex-none text-[10px] font-mono text-zinc-600">{index + 1}</div>
+    <div style={style} className="flex border-b border-skin-border/5 hover:bg-skin-accent/5 transition-colors items-center px-4">
+      <div className="w-12 flex-none text-[10px] font-mono text-skin-muted">{index + 1}</div>
       {mappings.map((m) => (
         <div 
           key={m.index} 
-          className={`flex-1 px-4 py-2 text-xs font-mono truncate ${m.role === 'ignore' ? 'opacity-30' : 'text-zinc-300'}`}
+          className={`flex-1 px-4 py-2 text-xs font-mono truncate ${m.role === 'ignore' ? 'opacity-30' : 'text-skin-text'}`}
         >
           {rawData[index][m.index]}
         </div>
@@ -203,33 +203,33 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full glass-panel rounded-[2.5rem] border border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col min-h-[600px] max-h-[85vh]"
-        style={{ backdropFilter: 'blur(20px)', backgroundColor: 'rgba(10, 10, 10, 0.8)' }}
+        className="w-full glass-panel rounded-[2.5rem] border border-skin-border/10 shadow-2xl overflow-hidden flex flex-col min-h-[600px] max-h-[85vh]"
+        style={{ backdropFilter: 'blur(20px)' }}
       >
         {/* Header / Stepper */}
-        <div className="p-8 border-b border-white/10 bg-black/40 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-8 border-b border-skin-border/10 bg-skin-surface/40 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-skin-accent/10 rounded-2xl border border-skin-accent/20">
               <Database className="w-6 h-6 text-skin-accent" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white tracking-tight uppercase">Data Workspace</h2>
+              <h2 className="text-xl font-bold text-skin-text tracking-tight uppercase">Data Workspace</h2>
               <p className="text-[10px] text-skin-muted font-mono tracking-[0.2em] mt-1">Intelligent Ingestion Engine v2.0</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 bg-black/40 p-1.5 rounded-2xl border border-white/5">
+          <div className="flex items-center gap-2 bg-skin-surface/40 p-1.5 rounded-2xl border border-skin-border/10">
             {[
               { id: 'UPLOAD', label: 'Ingest', icon: Upload },
               { id: 'MAPPING', label: 'Map', icon: Settings2 },
               { id: 'PREVIEW', label: 'Verify', icon: TableIcon }
             ].map((s, i) => (
               <React.Fragment key={s.id}>
-                <div className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-500 ${step === s.id ? 'bg-skin-accent text-black shadow-lg shadow-skin-accent/20' : 'text-zinc-500'}`}>
+                <div className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-500 ${step === s.id ? 'bg-skin-accent text-skin-base shadow-lg shadow-skin-accent/20' : 'text-skin-muted'}`}>
                   <s.icon className="w-3.5 h-3.5" />
                   <span className="text-[10px] font-black uppercase tracking-widest">{s.label}</span>
                 </div>
-                {i < 2 && <ChevronRight className="w-3 h-3 text-zinc-700" />}
+                {i < 2 && <ChevronRight className="w-3 h-3 text-skin-muted" />}
               </React.Fragment>
             ))}
           </div>
@@ -250,7 +250,7 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={onDrop}
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full max-w-2xl aspect-video border-2 border-dashed border-white/10 rounded-[3rem] flex flex-col items-center justify-center gap-6 hover:bg-skin-accent/5 hover:border-skin-accent/40 transition-all cursor-pointer group relative overflow-hidden"
+                  className="w-full max-w-2xl aspect-video border-2 border-dashed border-skin-border/10 rounded-[3rem] flex flex-col items-center justify-center gap-6 hover:bg-skin-accent/5 hover:border-skin-accent/40 transition-all cursor-pointer group relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-skin-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
@@ -263,11 +263,11 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                     <>
                       <div className="relative">
                         <div className="absolute -inset-4 bg-skin-accent/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <Upload className="w-16 h-16 text-zinc-600 group-hover:text-skin-accent transition-all duration-500 group-hover:-translate-y-2" />
+                        <Upload className="w-16 h-16 text-skin-muted group-hover:text-skin-accent transition-all duration-500 group-hover:-translate-y-2" />
                       </div>
                       <div className="text-center">
-                        <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-2">Drop Raw Intelligence</h3>
-                        <p className="text-xs text-zinc-500 font-mono">Supports .CSV, .XLSX, .XLS (Up to 50k rows)</p>
+                        <h3 className="text-lg font-bold text-skin-text uppercase tracking-widest mb-2">Drop Raw Intelligence</h3>
+                        <p className="text-xs text-skin-muted font-mono">Supports .CSV, .XLSX, .XLS (Up to 50k rows)</p>
                       </div>
                     </>
                   )}
@@ -276,7 +276,7 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
 
                 <button 
                   onClick={() => setShowFormatGuide(true)}
-                  className="mt-8 flex items-center gap-2 text-[10px] font-bold text-zinc-500 hover:text-skin-accent uppercase tracking-[0.3em] transition-all group"
+                  className="mt-8 flex items-center gap-2 text-[10px] font-bold text-skin-muted hover:text-skin-accent uppercase tracking-[0.3em] transition-all group"
                 >
                   <HelpCircle className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                   How should I format my data?
@@ -294,8 +294,8 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
               >
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h3 className="text-sm font-bold text-white uppercase tracking-widest">Column Mapping Engine</h3>
-                    <p className="text-[10px] text-zinc-500 font-mono mt-1">Assign roles to detected headers to define analysis logic</p>
+                    <h3 className="text-sm font-bold text-skin-text uppercase tracking-widest">Column Mapping Engine</h3>
+                    <p className="text-[10px] text-skin-muted font-mono mt-1">Assign roles to detected headers to define analysis logic</p>
                   </div>
                   <div className="px-4 py-2 bg-skin-accent/10 border border-skin-accent/20 rounded-xl flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-skin-accent animate-pulse" />
@@ -308,16 +308,16 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                     {mappings.map((m) => (
                       <div 
                         key={m.index}
-                        className={`p-6 rounded-2xl border transition-all duration-300 ${m.role !== 'ignore' ? 'bg-skin-accent/5 border-skin-accent/30 shadow-lg shadow-skin-accent/5' : 'bg-black/40 border-white/5 opacity-60'}`}
+                        className={`p-6 rounded-2xl border transition-all duration-300 ${m.role !== 'ignore' ? 'bg-skin-accent/5 border-skin-accent/30 shadow-lg shadow-skin-accent/5' : 'bg-skin-surface/40 border-skin-border/10 opacity-60'}`}
                       >
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-lg ${m.role !== 'ignore' ? 'bg-skin-accent/20 text-skin-accent' : 'bg-white/5 text-zinc-600'}`}>
+                            <div className={`p-2 rounded-lg ${m.role !== 'ignore' ? 'bg-skin-accent/20 text-skin-accent' : 'bg-skin-accent/5 text-skin-muted'}`}>
                               <TableIcon className="w-4 h-4" />
                             </div>
-                            <span className="text-xs font-bold text-white truncate max-w-[120px]">{m.header}</span>
+                            <span className="text-xs font-bold text-skin-text truncate max-w-[120px]">{m.header}</span>
                           </div>
-                          <span className="text-[9px] font-mono text-zinc-600 uppercase">Col {m.index + 1}</span>
+                          <span className="text-[9px] font-mono text-skin-muted uppercase">Col {m.index + 1}</span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-2">
@@ -330,7 +330,7 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                             <button
                               key={role.id}
                               onClick={() => handleRoleChange(m.index, role.id as ColumnRole)}
-                              className={`px-3 py-2 rounded-lg text-[9px] font-bold uppercase tracking-widest transition-all ${m.role === role.id ? 'bg-skin-accent text-black' : 'bg-black/40 text-zinc-500 hover:bg-white/5'}`}
+                              className={`px-3 py-2 rounded-lg text-[9px] font-bold uppercase tracking-widest transition-all ${m.role === role.id ? 'bg-skin-accent text-skin-base' : 'bg-skin-surface/40 text-skin-muted hover:bg-skin-accent/5'}`}
                             >
                               {role.label}
                             </button>
@@ -341,11 +341,11 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                   </div>
                 </div>
 
-                <div className="mt-8 flex justify-between items-center pt-6 border-t border-white/10">
-                  <button onClick={() => setStep('UPLOAD')} className="flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 transition-all text-xs font-bold uppercase tracking-widest">
+                <div className="mt-8 flex justify-between items-center pt-6 border-t border-skin-border/10">
+                  <button onClick={() => setStep('UPLOAD')} className="flex items-center gap-2 px-6 py-3 rounded-xl border border-skin-border/10 text-skin-muted hover:text-skin-text hover:bg-skin-accent/5 transition-all text-xs font-bold uppercase tracking-widest">
                     <ChevronLeft className="w-4 h-4" /> Back to Ingest
                   </button>
-                  <button onClick={() => setStep('PREVIEW')} className="flex items-center gap-2 px-8 py-3 rounded-xl bg-skin-accent text-black hover:brightness-110 transition-all text-xs font-black uppercase tracking-widest shadow-lg shadow-skin-accent/20">
+                  <button onClick={() => setStep('PREVIEW')} className="flex items-center gap-2 px-8 py-3 rounded-xl bg-skin-accent text-skin-base hover:brightness-110 transition-all text-xs font-black uppercase tracking-widest shadow-lg shadow-skin-accent/20">
                     Verify Data <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -362,29 +362,29 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
               >
                 <div className="p-8 pb-4 flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-white uppercase tracking-widest">Sanitized Data Preview</h3>
-                    <p className="text-[10px] text-zinc-500 font-mono mt-1">Virtualizing {rawData.length} rows with 2-decimal precision</p>
+                    <h3 className="text-sm font-bold text-skin-text uppercase tracking-widest">Sanitized Data Preview</h3>
+                    <p className="text-[10px] text-skin-muted font-mono mt-1">Virtualizing {rawData.length} rows with 2-decimal precision</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-skin-muted">
                       <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
                       AUTO-ROUNDED
                     </div>
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-skin-muted">
                       <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
                       VIRTUALIZED
                     </div>
                   </div>
                 </div>
 
-                <div className="flex-1 bg-black/20 mx-8 mb-4 rounded-2xl border border-white/5 overflow-hidden flex flex-col">
+                <div className="flex-1 bg-skin-surface/20 mx-8 mb-4 rounded-2xl border border-skin-border/10 overflow-hidden flex flex-col">
                   {/* Table Header */}
-                  <div className="flex bg-black/40 border-b border-white/10 px-4 py-3 items-center">
-                    <div className="w-12 flex-none text-[10px] font-mono text-zinc-600 uppercase tracking-widest">#</div>
+                  <div className="flex bg-skin-surface/40 border-b border-skin-border/10 px-4 py-3 items-center">
+                    <div className="w-12 flex-none text-[10px] font-mono text-skin-muted uppercase tracking-widest">#</div>
                     {mappings.map((m) => (
                       <div 
                         key={m.index} 
-                        className={`flex-1 px-4 text-[10px] font-bold uppercase tracking-widest truncate ${m.role === 'ignore' ? 'text-zinc-700' : 'text-skin-accent'}`}
+                        className={`flex-1 px-4 text-[10px] font-bold uppercase tracking-widest truncate ${m.role === 'ignore' ? 'text-skin-muted/40' : 'text-skin-accent'}`}
                       >
                         {m.header}
                         {m.role !== 'ignore' && <span className="ml-2 text-[8px] opacity-50">({m.role.toUpperCase()})</span>}
@@ -394,23 +394,23 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                   
                   {/* Virtualized List */}
                   <div className="flex-1">
-                  <List
-                    height={400} // This will be adjusted by container
-                    itemCount={rawData.length}
-                    itemSize={40}
-                    width="100%"
-                    className="custom-scrollbar"
-                  >
-                    {Row}
-                  </List>
+                    <FixedSizeList
+                      height={400} 
+                      itemCount={rawData.length}
+                      itemSize={40}
+                      width="100%"
+                      className="custom-scrollbar"
+                    >
+                      {Row}
+                    </FixedSizeList>
                   </div>
                 </div>
 
-                <div className="p-8 pt-4 flex justify-between items-center border-t border-white/10 bg-black/20">
-                  <button onClick={() => setStep('MAPPING')} className="flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 transition-all text-xs font-bold uppercase tracking-widest">
+                <div className="p-8 pt-4 flex justify-between items-center border-t border-skin-border/10 bg-skin-surface/20">
+                  <button onClick={() => setStep('MAPPING')} className="flex items-center gap-2 px-6 py-3 rounded-xl border border-skin-border/10 text-skin-muted hover:text-skin-text hover:bg-skin-accent/5 transition-all text-xs font-bold uppercase tracking-widest">
                     <ChevronLeft className="w-4 h-4" /> Back to Mapping
                   </button>
-                  <button onClick={finalizeData} className="flex items-center gap-3 px-10 py-4 rounded-xl bg-skin-accent text-black hover:brightness-110 transition-all text-xs font-black uppercase tracking-[0.2em] shadow-xl shadow-skin-accent/30">
+                  <button onClick={finalizeData} className="flex items-center gap-3 px-10 py-4 rounded-xl bg-skin-accent text-skin-base hover:brightness-110 transition-all text-xs font-black uppercase tracking-[0.2em] shadow-xl shadow-skin-accent/30">
                     <CheckCircle2 className="w-5 h-5" /> Launch Analysis
                   </button>
                 </div>

@@ -35,11 +35,16 @@ const THEMES: Theme[] = [
     name: 'Custom Theme',
     colors: { bg: '#0a0a0a', surface: '#1a1a1a', text: '#f5f5f5', accent: '#3b82f6', muted: '#737373' }
   },
-  // --- Original Themes ---
+  // --- Mixed Themes ---
   {
     id: 'oled',
     name: 'OLED Default',
     colors: { bg: '#000000', surface: '#111111', text: '#E4E4E7', accent: '#00E5FF', muted: '#71717A' }
+  },
+  {
+    id: 'paper',
+    name: 'Paper White',
+    colors: { bg: '#ffffff', surface: '#f3f4f6', text: '#111827', accent: '#3b82f6', muted: '#6b7280' }
   },
   {
     id: 'cyberpunk',
@@ -52,9 +57,19 @@ const THEMES: Theme[] = [
     colors: { bg: '#282828', surface: '#3c3836', text: '#ebdbb2', accent: '#fabd2f', muted: '#a89984' }
   },
   {
+    id: 'sepia',
+    name: 'Soft Sepia',
+    colors: { bg: '#f4ecd8', surface: '#e6dec9', text: '#5b4636', accent: '#8b4513', muted: '#a69076' }
+  },
+  {
     id: 'dracula',
     name: 'Dracula',
     colors: { bg: '#282a36', surface: '#44475a', text: '#f8f8f2', accent: '#ff79c6', muted: '#6272a4' }
+  },
+  {
+    id: 'matcha',
+    name: 'Matcha Latte',
+    colors: { bg: '#f0f4f0', surface: '#e0e8e0', text: '#2d3a2d', accent: '#4a7c44', muted: '#7a8c7a' }
   },
   {
     id: 'nord',
@@ -67,6 +82,11 @@ const THEMES: Theme[] = [
     colors: { bg: '#272822', surface: '#3e3d32', text: '#f8f8f2', accent: '#a6e22e', muted: '#75715e' }
   },
   {
+    id: 'solarized-light',
+    name: 'Solarized Light',
+    colors: { bg: '#fdf6e3', surface: '#eee8d5', text: '#657b83', accent: '#268bd2', muted: '#93a1a1' }
+  },
+  {
     id: 'solarized',
     name: 'Solarized Dark',
     colors: { bg: '#002b36', surface: '#073642', text: '#93a1a1', accent: '#2aa198', muted: '#586e75' }
@@ -75,6 +95,16 @@ const THEMES: Theme[] = [
     id: 'tokyo',
     name: 'Tokyo Night',
     colors: { bg: '#1a1b26', surface: '#24283b', text: '#c0caf5', accent: '#7aa2f7', muted: '#565f89' }
+  },
+  {
+    id: 'rose',
+    name: 'Rose Water',
+    colors: { bg: '#fff5f7', surface: '#ffeef2', text: '#5d3a44', accent: '#e91e63', muted: '#a68a91' }
+  },
+  {
+    id: 'nord-light',
+    name: 'Nord Light',
+    colors: { bg: '#e5e9f0', surface: '#d8dee9', text: '#2e3440', accent: '#5e81ac', muted: '#4c566a' }
   },
   {
     id: 'synthwave',
@@ -96,7 +126,7 @@ const THEMES: Theme[] = [
     name: 'Firewatch',
     colors: { bg: '#1C1315', surface: '#2D1F22', text: '#EAE1DC', accent: '#EB5E28', muted: '#7D6B66' }
   },
-  // --- New High-Contrast & Terminal Themes ---
+  // --- High-Contrast & Terminal Themes ---
   {
     id: 'phosphor-amber',
     name: 'Phosphor Amber',
@@ -159,6 +189,12 @@ const hexToRgb = (hex: string): string => {
   return result ? `${parseInt(result[1], 16)} ${parseInt(result[2], 16)} ${parseInt(result[3], 16)}` : '0 0 0';
 };
 
+const isLightColor = (hex: string) => {
+  const rgb = hexToRgb(hex).split(' ').map(Number);
+  const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+  return brightness > 155; // Threshold for "light"
+};
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -182,6 +218,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     root.style.setProperty('--color-accent', hexToRgb(colors.accent));
     root.style.setProperty('--color-text-muted', hexToRgb(colors.muted));
     root.style.setProperty('--color-border', hexToRgb(colors.text)); // Derived border
+
+    // 3. Toggle dark class for Tailwind
+    if (isLightColor(colors.bg)) {
+      root.classList.remove('dark');
+    } else {
+      root.classList.add('dark');
+    }
   }, []);
 
   // Load from local storage on mount

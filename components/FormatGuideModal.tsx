@@ -77,23 +77,23 @@ export const FormatGuideModal: React.FC<FormatGuideModalProps> = ({ isOpen, onCl
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden glass-panel rounded-[2rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] flex flex-col"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden glass-panel rounded-[2rem] border border-skin-muted/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] flex flex-col"
             style={{ backdropFilter: 'blur(16px)' }}
           >
             {/* Header */}
-            <div className="p-8 border-b border-white/10 flex justify-between items-center bg-black/20">
+            <div className="p-8 border-b border-skin-muted/10 flex justify-between items-center bg-skin-surface/20">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-skin-accent/10 rounded-2xl border border-skin-accent/20">
                   <TableIcon className="w-6 h-6 text-skin-accent" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-white tracking-tight">Import Format Guide</h2>
+                  <h2 className="text-2xl font-bold text-skin-text tracking-tight">Import Format Guide</h2>
                   <p className="text-xs text-skin-muted font-mono mt-1">Structure your CSV/Excel files for auto-detection</p>
                 </div>
               </div>
               <button
                 onClick={onClose}
-                className="p-3 hover:bg-white/10 rounded-2xl text-skin-muted hover:text-white transition-all hover:scale-110 active:scale-95"
+                className="p-3 hover:bg-skin-surface/40 rounded-2xl text-skin-muted hover:text-white transition-all hover:scale-110 active:scale-95"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -111,23 +111,23 @@ export const FormatGuideModal: React.FC<FormatGuideModalProps> = ({ isOpen, onCl
                       </h3>
                       <button
                         onClick={() => downloadTemplate(template.filename, template.content)}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-skin-accent hover:text-black hover:border-skin-accent transition-all text-[10px] font-bold uppercase tracking-widest text-zinc-400"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-skin-surface/20 border border-skin-muted/10 hover:bg-skin-accent hover:text-skin-bg hover:border-skin-accent transition-all text-[10px] font-bold uppercase tracking-widest text-skin-muted"
                       >
                         <Download className="w-3.5 h-3.5" />
                         Template
                       </button>
                     </div>
                     
-                    <p className="text-xs text-zinc-500 font-mono leading-relaxed">
+                    <p className="text-xs text-skin-muted font-mono leading-relaxed">
                       {template.description}
                     </p>
 
-                    <div className="rounded-2xl border border-white/5 bg-black/40 overflow-hidden shadow-inner">
+                    <div className="rounded-2xl border border-skin-muted/10 bg-skin-surface/20 overflow-hidden shadow-inner">
                       <table className="w-full text-left border-collapse">
                         <thead>
-                          <tr className="bg-white/5">
+                          <tr className="bg-skin-surface/40">
                             {template.headers.map((header, i) => (
-                              <th key={i} className="px-5 py-3 text-[10px] font-mono text-skin-muted uppercase tracking-widest border-b border-white/5">
+                              <th key={i} className="px-5 py-3 text-[10px] font-mono text-skin-muted uppercase tracking-widest border-b border-skin-muted/10">
                                 {header}
                               </th>
                             ))}
@@ -135,9 +135,9 @@ export const FormatGuideModal: React.FC<FormatGuideModalProps> = ({ isOpen, onCl
                         </thead>
                         <tbody>
                           {template.rows.map((row, i) => (
-                            <tr key={i} className="border-b border-white/[0.02] last:border-0 group-hover:bg-white/[0.02] transition-colors">
+                            <tr key={i} className="border-b border-skin-muted/5 last:border-0 group-hover:bg-skin-surface/20 transition-colors">
                               {row.map((cell, j) => (
-                                <td key={j} className="px-5 py-3 text-xs font-mono text-zinc-400">
+                                <td key={j} className="px-5 py-3 text-xs font-mono text-skin-muted/80">
                                   {cell}
                                 </td>
                               ))}
@@ -156,8 +156,8 @@ export const FormatGuideModal: React.FC<FormatGuideModalProps> = ({ isOpen, onCl
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-sm font-bold text-skin-accent uppercase tracking-wider">Pro Tip: Auto-Detection</h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed max-w-2xl">
-                    StatForge uses a smart algorithm to detect your data type based on column count, headers, and content patterns. For best results, use the headers shown above (e.g., <code className="text-skin-accent bg-black/40 px-1.5 py-0.5 rounded font-mono">X</code> and <code className="text-skin-accent bg-black/40 px-1.5 py-0.5 rounded font-mono">Y</code> for Bivariate analysis).
+                  <p className="text-xs text-skin-muted/80 leading-relaxed max-w-2xl">
+                    StatForge uses a smart algorithm to detect your data type based on column count, headers, and content patterns. For best results, use the headers shown above (e.g., <code className="text-skin-accent bg-skin-surface/40 px-1.5 py-0.5 rounded font-mono">X</code> and <code className="text-skin-accent bg-skin-surface/40 px-1.5 py-0.5 rounded font-mono">Y</code> for Bivariate analysis).
                   </p>
                 </div>
               </div>

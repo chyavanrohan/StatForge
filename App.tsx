@@ -65,12 +65,12 @@ const AppContent: React.FC = () => {
         <SettingsMenu />
       )}
 
-      <header className="bg-skin-base border-b border-white/5 sticky top-0 z-40 no-print flex-none">
+      <header className="bg-skin-base border-b border-skin-border/10 sticky top-0 z-40 no-print flex-none">
         <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setShowStudio(!showStudio)}
-              className={`p-2 hover:bg-white/5 rounded-lg transition-colors flex items-center gap-2 group ${showStudio ? 'text-skin-accent' : 'text-skin-muted hover:text-skin-text'}`}
+              className={`p-2 hover:bg-skin-surface/10 rounded-lg transition-colors flex items-center gap-2 group ${showStudio ? 'text-skin-accent' : 'text-skin-muted hover:text-skin-text'}`}
             >
               <Terminal className={`w-5 h-5 transition-transform duration-300 ${showStudio ? 'scale-110' : 'scale-100'}`} />
               <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">{showStudio ? 'View Analysis' : 'Data Studio'}</span>
@@ -108,8 +108,8 @@ const AppContent: React.FC = () => {
                 {...pageTransition}
                 className="h-full max-w-5xl mx-auto"
               >
-                <div className="h-full min-h-[70vh] sm:min-h-[80vh] rounded-2xl sm:rounded-3xl border border-white/5 glass-panel shadow-2xl flex flex-col overflow-hidden">
-                  <div className="p-4 sm:p-8 border-b border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 flex-none bg-black/40">
+                <div className="h-full min-h-[70vh] sm:min-h-[80vh] rounded-2xl sm:rounded-3xl border border-skin-border/10 glass-panel shadow-2xl flex flex-col overflow-hidden">
+                  <div className="p-4 sm:p-8 border-b border-skin-border/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 flex-none bg-skin-surface/40">
                     <div className="flex items-center gap-3 sm:gap-4">
                       <div className="p-2 sm:p-3 bg-skin-accent/10 rounded-xl sm:rounded-2xl">
                         <Terminal className="w-5 h-5 sm:w-6 sm:h-6 text-skin-accent" />
@@ -123,7 +123,7 @@ const AppContent: React.FC = () => {
                       {dataset && (
                         <button 
                           onClick={() => setShowStudio(false)} 
-                          className="flex-1 sm:flex-none text-[9px] sm:text-[10px] text-skin-accent hover:text-white font-mono tracking-widest uppercase transition-all border border-skin-accent/20 px-3 py-2 rounded-xl bg-skin-accent/5 hover:bg-skin-accent/20"
+                          className="flex-1 sm:flex-none text-[9px] sm:text-[10px] text-skin-accent hover:text-skin-text font-mono tracking-widest uppercase transition-all border border-skin-accent/20 px-3 py-2 rounded-xl bg-skin-accent/5 hover:bg-skin-accent/20"
                         >
                           Cancel
                         </button>
