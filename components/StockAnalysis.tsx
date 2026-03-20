@@ -281,27 +281,27 @@ export const StockAnalysis: React.FC<Props> = ({ dataset }) => {
                   <span className="text-[10px] font-bold uppercase tracking-[0.5em] opacity-80" style={{ color: colors.accent }}>NODE_PROCESS: {chartMode}_RENDERING</span>
                   <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: colors.accent }} />
                 </div>
-                <h1 className="text-5xl font-display font-black text-white tracking-tighter flex items-baseline gap-4">
+                <h1 className="text-3xl sm:text-5xl font-display font-black text-white tracking-tighter flex flex-wrap items-baseline gap-2 sm:gap-4">
                   {/* INTERACTIVE HUD NAME - Points to Yahoo Finance */}
                   <a 
                     href={`https://finance.yahoo.com/quote/${dataset.ticker}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-skin-accent transition-all duration-300 flex items-center gap-3 group/legit no-underline"
+                    className="hover:text-skin-accent transition-all duration-300 flex items-center gap-2 sm:gap-3 group/legit no-underline"
                     title={`Explore ${dataset.ticker} on Yahoo Finance`}
                   >
                     {dataset.ticker}
-                    <ExternalLink className="w-6 h-6 opacity-0 group-hover/legit:opacity-50 group-hover/legit:translate-x-1 transition-all" />
+                    <ExternalLink className="w-4 h-4 sm:w-6 sm:h-6 opacity-0 group-hover/legit:opacity-50 group-hover/legit:translate-x-1 transition-all" />
                   </a>
-                  <span className={`text-2xl font-mono ${isUp ? 'text-[#00E5FF] terminal-glow-cyan' : 'text-terminal-red terminal-glow-red'}`}>
+                  <span className={`text-xl sm:text-2xl font-mono ${isUp ? 'text-[#00E5FF] terminal-glow-cyan' : 'text-terminal-red terminal-glow-red'}`}>
                     {isUp ? '▲' : '▼'} {dataset.currentPrice.toFixed(2)}
                   </span>
                 </h1>
-                <div className="flex items-center gap-6 text-[11px] font-bold text-white/60 uppercase tracking-widest">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-[10px] sm:text-[11px] font-bold text-white/60 uppercase tracking-widest">
                   <span>O: <span className="text-white">{displayData.open?.toFixed(2)}</span></span>
                   <span>H: <span className="text-white">{displayData.high?.toFixed(2)}</span></span>
                   <span>L: <span className="text-white">{displayData.low?.toFixed(2)}</span></span>
-                  <span className="px-3 py-1 bg-white/5 rounded-md border border-white/10" style={{ color: colors.accent }}>[[ CLOSE: {displayData.close?.toFixed(2)} ]]</span>
+                  <span className="px-2 sm:px-3 py-1 bg-white/5 rounded-md border border-white/10" style={{ color: colors.accent }}>[[ CLOSE: {displayData.close?.toFixed(2)} ]]</span>
                 </div>
               </div>
 
@@ -313,20 +313,20 @@ export const StockAnalysis: React.FC<Props> = ({ dataset }) => {
           </div>
 
           <div 
-            className="relative terminal-glass rounded-3xl p-6 overflow-hidden border border-white/5 bg-black shadow-inner shadow-white/5 min-h-[600px]"
+            className="relative terminal-glass rounded-3xl p-4 sm:p-6 overflow-hidden border border-white/5 bg-black shadow-inner shadow-white/5 min-h-[400px] sm:min-h-[600px]"
           >
-            <div className="h-[600px] w-full relative z-10">
+            <div className="h-[400px] sm:h-[600px] w-full relative z-10">
               {chartMode === 'PIE' ? (
                 <div className="w-full h-full flex flex-col items-center justify-center animate-in zoom-in-95 duration-700">
-                  <div className="relative">
-                    <ResponsiveContainer width={500} height={500}>
+                  <div className="relative w-full max-w-[500px] aspect-square">
+                    <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
                           data={sentimentRatio}
                           cx="50%"
                           cy="50%"
-                          innerRadius={150}
-                          outerRadius={210}
+                          innerRadius="60%"
+                          outerRadius="85%"
                           paddingAngle={8}
                           dataKey="value"
                           stroke="none"
@@ -338,9 +338,9 @@ export const StockAnalysis: React.FC<Props> = ({ dataset }) => {
                           <Label 
                             content={({ viewBox: { cx, cy } }: any) => (
                               <text x={cx} y={cy} fill="white" textAnchor="middle" dominantBaseline="central">
-                                <tspan x={cx} dy="-1.5em" fontSize="12" fontWeight="900" fill="#666" className="tracking-[0.5em] uppercase">Market Ratio</tspan>
-                                <tspan x={cx} dy="2em" fontSize="48" fontWeight="900" className="font-display">{(sentimentRatio[0].value / (sentimentRatio[0].value + sentimentRatio[1].value) * 100).toFixed(0)}%</tspan>
-                                <tspan x={cx} dy="1.5em" fontSize="10" fontWeight="700" fill={colors.accent} className="tracking-widest uppercase">Bullish Dominance</tspan>
+                                <tspan x={cx} dy="-1.5em" fontSize="10" fontWeight="900" fill="#666" className="tracking-[0.5em] uppercase">Market Ratio</tspan>
+                                <tspan x={cx} dy="2em" fontSize="32" fontWeight="900" className="font-display">{(sentimentRatio[0].value / (sentimentRatio[0].value + sentimentRatio[1].value) * 100).toFixed(0)}%</tspan>
+                                <tspan x={cx} dy="1.5em" fontSize="8" fontWeight="700" fill={colors.accent} className="tracking-widest uppercase">Bullish Dominance</tspan>
                               </text>
                             )}
                           />
@@ -351,14 +351,14 @@ export const StockAnalysis: React.FC<Props> = ({ dataset }) => {
                       </PieChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="grid grid-cols-2 gap-20 mt-4">
+                  <div className="grid grid-cols-2 gap-8 sm:gap-20 mt-4">
                      {sentimentRatio.map(s => (
                        <div key={s.name} className="flex flex-col items-center gap-1">
                           <div className="w-12 h-1 bg-white/10 rounded-full overflow-hidden mb-2">
                              <div className="h-full" style={{ backgroundColor: s.color, width: '100%' }} />
                           </div>
-                          <span className="text-[10px] text-zinc-500 font-black tracking-widest uppercase">{s.name}</span>
-                          <span className="text-2xl font-display font-black text-white">{s.value} <span className="text-xs text-zinc-600">Days</span></span>
+                          <span className="text-[8px] sm:text-[10px] text-zinc-500 font-black tracking-widest uppercase">{s.name}</span>
+                          <span className="text-xl sm:text-2xl font-display font-black text-white">{s.value} <span className="text-[10px] sm:text-xs text-zinc-600">Days</span></span>
                        </div>
                      ))}
                   </div>
@@ -444,17 +444,17 @@ export const StockAnalysis: React.FC<Props> = ({ dataset }) => {
         <div 
             className="space-y-6"
         >
-          <div className="relative overflow-hidden terminal-glass rounded-3xl p-10 border-l-4 border-terminal-purple">
+          <div className="relative overflow-hidden terminal-glass rounded-3xl p-6 sm:p-10 border-l-4 border-terminal-purple">
             <div className="scanline-overlay"></div>
-            <div className="space-y-6 relative z-10">
+            <div className="space-y-4 sm:space-y-6 relative z-10">
               <div className="flex items-center gap-3">
-                <Cpu className="w-6 h-6 text-terminal-purple animate-pulse" />
-                <span className="text-xs font-black uppercase tracking-[0.6em] text-zinc-500">Recursive_Neural_Network</span>
+                <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-terminal-purple animate-pulse" />
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] sm:tracking-[0.6em] text-zinc-500">Recursive_Neural_Network</span>
               </div>
-              <h2 className="text-5xl font-display font-black text-white tracking-tighter">PROJECTED_EXIT: <span className="text-terminal-purple terminal-glow-purple">${dataset.prediction.forecast[4].close.toFixed(2)}</span></h2>
-              <p className="text-sm text-skin-muted max-w-xl leading-relaxed font-mono">Statistical extrapolation utilizing stochastic gradient descent on 300D market weights. Confidence interval calculated at 94%.</p>
+              <h2 className="text-3xl sm:text-5xl font-display font-black text-white tracking-tighter">PROJECTED_EXIT: <span className="text-terminal-purple terminal-glow-purple">${dataset.prediction.forecast[4].close.toFixed(2)}</span></h2>
+              <p className="text-xs sm:text-sm text-skin-muted max-w-xl leading-relaxed font-mono">Statistical extrapolation utilizing stochastic gradient descent on 300D market weights. Confidence interval calculated at 94%.</p>
             </div>
-            <div className="h-[450px] w-full mt-12 relative">
+            <div className="h-[300px] sm:h-[450px] w-full mt-8 sm:mt-12 relative">
                <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={dataset.prediction.forecast}>
                     <defs>
@@ -484,16 +484,16 @@ export const StockAnalysis: React.FC<Props> = ({ dataset }) => {
            <div className="text-3xl font-display font-black text-white">{(dataset.volatility * 100).toFixed(2)}% σ</div>
            <div className="text-[9px] text-zinc-600 mt-2 font-mono uppercase tracking-widest">Standard Deviation Variance</div>
         </div>
-        <div className="terminal-glass rounded-2xl p-6 md:col-span-2 border-t border-terminal-purple/30 flex items-center justify-between">
-           <div className="space-y-4">
+        <div className="terminal-glass rounded-2xl p-6 md:col-span-2 border-t border-terminal-purple/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+           <div className="space-y-4 w-full sm:w-auto">
               <span className="text-[10px] font-black text-terminal-purple uppercase tracking-widest">Bivariate_Regression_Function</span>
-              <div className="bg-black px-6 py-3 rounded-xl border border-white/5 shadow-inner">
-                 <Formula tex={dataset.prediction.formula} className="text-2xl text-white" />
+              <div className="bg-black px-4 sm:px-6 py-3 rounded-xl border border-white/5 shadow-inner overflow-x-auto">
+                 <Formula tex={dataset.prediction.formula} className="text-xl sm:text-2xl text-white whitespace-nowrap" />
               </div>
            </div>
-           <div className="text-right">
+           <div className="text-left sm:text-right w-full sm:w-auto">
               <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-1">R_Squared</div>
-              <div className="text-4xl font-display font-black text-white">{(dataset.prediction.rSquared * 100).toFixed(1)}<span className="text-base text-zinc-600 ml-1">%</span></div>
+              <div className="text-3xl sm:text-4xl font-display font-black text-white">{(dataset.prediction.rSquared * 100).toFixed(1)}<span className="text-base text-zinc-600 ml-1">%</span></div>
            </div>
         </div>
       </div>

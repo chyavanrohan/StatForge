@@ -34,26 +34,28 @@ const SolverRow: React.FC<{
     <div className="w-full mb-3">
       <div 
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group glass-panel rounded-lg px-6 py-3 flex items-center gap-6 hover:bg-white/[0.04] hover:border-skin-accent/20 transition-colors cursor-pointer"
+        className="group glass-panel rounded-lg px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-white/[0.04] hover:border-skin-accent/20 transition-colors cursor-pointer"
       >
-         {/* Arrow Indicator */}
-         <div className="text-skin-accent">
-            {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+         <div className="flex items-center gap-4 flex-1">
+            {/* Arrow Indicator */}
+            <div className="text-skin-accent">
+               {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+            </div>
+
+            {/* Index & Title */}
+            <div className="flex items-center gap-4 min-w-0">
+               <span className="text-[10px] font-mono text-zinc-600 font-bold">{String(index + 1).padStart(2, '0')}</span>
+               <h3 className="text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors truncate">{title}</h3>
+            </div>
          </div>
 
-         {/* Index & Title */}
-         <div className="flex items-center gap-4 min-w-[200px]">
-            <span className="text-[10px] font-mono text-zinc-600 font-bold">{String(index + 1).padStart(2, '0')}</span>
-            <h3 className="text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors truncate max-w-[200px]">{title}</h3>
-         </div>
-
-         {/* Formula - Centered */}
-         <div className="flex-1 flex justify-center border-l border-r border-white/5 px-4 opacity-60 group-hover:opacity-100 transition-opacity">
+         {/* Formula - Centered (Hidden on mobile) */}
+         <div className="hidden sm:flex flex-1 justify-center border-l border-r border-white/5 px-4 opacity-60 group-hover:opacity-100 transition-opacity">
              <Formula tex={formula} className="text-sm text-skin-muted" />
          </div>
 
          {/* Result */}
-         <div className="min-w-[150px] text-right">
+         <div className="sm:min-w-[150px] text-left sm:text-right pl-8 sm:pl-0">
              <div className="text-lg font-mono font-bold text-skin-accent tabular-nums break-all">
                <ScrambleText value={answer} />
              </div>

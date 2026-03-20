@@ -112,32 +112,40 @@ export const SettingsMenu: React.FC = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6">
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
         onClick={() => closeSettings(false)}
       />
 
-      <div className="relative w-full max-w-4xl h-[600px] bg-[#0A0A0C] border border-white/10 rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] overflow-hidden flex animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full h-full sm:max-w-4xl sm:h-[600px] bg-[#0A0A0C] border-0 sm:border sm:border-white/10 rounded-none sm:rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
         
         {/* Content Area */}
-        <div className="flex-1 flex flex-col bg-transparent">
+        <div className="flex-1 flex flex-col bg-transparent overflow-hidden">
           <div className="h-full flex flex-col">
             {/* Header with Search */}
-            <div className="p-6 border-b border-white/5 flex items-center gap-4">
-              <div className="flex items-center gap-3 mr-4">
-                <div className="p-2 bg-skin-accent/10 rounded-lg">
-                  <Palette className="w-5 h-5 text-skin-accent" />
+            <div className="p-4 sm:p-6 border-b border-white/5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex items-center justify-between w-full sm:w-auto">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-skin-accent/10 rounded-lg">
+                    <Palette className="w-5 h-5 text-skin-accent" />
+                  </div>
+                  <span className="font-bold text-skin-text tracking-tight whitespace-nowrap">Theme Engine</span>
                 </div>
-                <span className="font-bold text-skin-text tracking-tight whitespace-nowrap">Theme Engine</span>
+                <button 
+                  onClick={() => closeSettings(false)}
+                  className="p-2 hover:bg-white/10 rounded-lg text-skin-muted transition-colors sm:hidden"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
-              <div className="relative flex-1">
+              <div className="relative flex-1 w-full">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-skin-muted" />
                 <input
                   ref={inputRef}
                   type="text"
                   placeholder="Search themes..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-11 pr-4 text-sm text-skin-text placeholder:text-skin-muted/50 outline-none focus:border-skin-accent/50 transition-colors font-mono"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 sm:py-3 pl-11 pr-4 text-sm text-skin-text placeholder:text-skin-muted/50 outline-none focus:border-skin-accent/50 transition-colors font-mono"
                   value={searchQuery}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
@@ -145,7 +153,7 @@ export const SettingsMenu: React.FC = () => {
                   }}
                 />
               </div>
-              <div className="flex items-center gap-2">
+              <div className="hidden sm:flex items-center gap-2">
                  <div className="text-[10px] bg-white/10 px-2 py-1 rounded text-skin-muted font-mono">CMD+K</div>
                  <button 
                   onClick={() => closeSettings(false)}
@@ -156,9 +164,9 @@ export const SettingsMenu: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex-1 flex overflow-hidden">
-              {/* Theme List (Left side of screenshot) */}
-              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar border-r border-white/5">
+            <div className="flex-1 flex flex-col sm:flex-row overflow-hidden">
+              {/* Theme List */}
+              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar border-b sm:border-b-0 sm:border-r border-white/5">
                 <div className="text-[10px] font-mono text-skin-muted uppercase tracking-widest mb-4 px-2">Available Themes</div>
                 <ul ref={listRef} className="space-y-1">
                   {filteredThemes.length === 0 ? (
@@ -200,8 +208,8 @@ export const SettingsMenu: React.FC = () => {
                 </ul>
               </div>
 
-              {/* Theme Engine Panel (Right side of screenshot) */}
-              <div className="w-80 p-6 bg-black/20 overflow-y-auto custom-scrollbar flex flex-col">
+              {/* Theme Engine Panel */}
+              <div className="w-full sm:w-80 p-6 bg-black/20 overflow-y-auto custom-scrollbar flex flex-col">
                 <div className="flex items-center gap-2 mb-6">
                   <Palette className="w-4 h-4 text-skin-accent" />
                   <span className="text-xs font-bold text-skin-text tracking-widest uppercase">Theme Engine</span>
@@ -213,7 +221,7 @@ export const SettingsMenu: React.FC = () => {
                     Global Accent
                   </label>
                   <div className="space-y-4">
-                    <div className="relative w-full h-24 rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer">
+                    <div className="relative w-full h-20 sm:h-24 rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer">
                       <input 
                         type="color" 
                         value={pendingTheme.colors.accent}
@@ -232,7 +240,7 @@ export const SettingsMenu: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-12 p-4 bg-skin-accent/5 border border-skin-accent/10 rounded-2xl">
+                <div className="hidden sm:block mt-12 p-4 bg-skin-accent/5 border border-skin-accent/10 rounded-2xl">
                    <p className="text-[10px] text-skin-muted leading-relaxed italic">
                      "Design is not just what it looks like and feels like. Design is how it works."
                    </p>
@@ -245,8 +253,8 @@ export const SettingsMenu: React.FC = () => {
             </div>
 
             {/* Footer */}
-            <div className="px-6 py-4 bg-black/40 border-t border-white/5 flex justify-between items-center">
-              <div className="flex items-center gap-6 text-[10px] text-skin-muted font-mono">
+            <div className="px-4 sm:px-6 py-4 bg-black/40 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="hidden sm:flex items-center gap-6 text-[10px] text-skin-muted font-mono">
                 <div className="flex items-center gap-1.5">
                   <span className="text-skin-accent">↑↓</span> Navigate
                 </div>
@@ -257,16 +265,16 @@ export const SettingsMenu: React.FC = () => {
                   <span className="text-skin-accent">ESC</span> Close
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full sm:w-auto">
                  <button 
                   onClick={() => closeSettings(false)}
-                  className="px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-skin-muted hover:text-skin-text transition-colors"
+                  className="flex-1 sm:flex-none px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-skin-muted hover:text-skin-text transition-colors border border-white/10 rounded-lg sm:border-0"
                  >
                    Discard
                  </button>
                  <button 
                   onClick={() => closeSettings(true)}
-                  className="px-6 py-2 bg-skin-accent text-black text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity shadow-lg shadow-skin-accent/20"
+                  className="flex-1 sm:flex-none px-6 py-2.5 bg-skin-accent text-black text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity shadow-lg shadow-skin-accent/20"
                  >
                    Apply Changes
                  </button>

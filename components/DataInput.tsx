@@ -516,13 +516,13 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
             <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Analysis Mode</label>
             <button 
               onClick={() => setShowHistory(true)}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-skin-accent/40 hover:text-skin-accent transition-all text-[10px] font-bold uppercase tracking-widest text-zinc-400 group"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-skin-accent/40 hover:text-skin-accent transition-all text-[10px] font-bold uppercase tracking-widest text-zinc-400 group"
             >
               <RotateCcw className="w-3 h-3 group-hover:-rotate-180 transition-transform duration-500" />
               History
             </button>
          </div>
-         <div className="grid grid-cols-2 gap-2">
+         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {displayModes.map((mode) => (
             <button
                 key={mode.type}
@@ -593,13 +593,13 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
               {!stagingData ? (
                 <div className="space-y-4 animate-in fade-in duration-500">
                   <div 
-                    className="border-2 border-dashed border-white/10 rounded-2xl p-10 text-center hover:bg-skin-accent/5 cursor-pointer transition-colors group relative overflow-hidden" 
+                    className="border-2 border-dashed border-white/10 rounded-2xl p-6 sm:p-10 text-center hover:bg-skin-accent/5 cursor-pointer transition-colors group relative overflow-hidden" 
                     onClick={() => fileInputRef.current?.click()}
                   >
                       <div className="absolute inset-0 bg-gradient-to-br from-skin-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <FileSpreadsheet className="w-10 h-10 text-skin-muted mx-auto mb-4 group-hover:text-skin-accent transition-colors" />
-                      <h3 className="text-xs font-black uppercase tracking-widest text-skin-text">Smart Import Engine</h3>
-                      <p className="text-[10px] text-zinc-500 mt-2">Drop .CSV or .XLSX for Auto-Detection</p>
+                      <FileSpreadsheet className="w-8 h-8 sm:w-10 sm:h-10 text-skin-muted mx-auto mb-4 group-hover:text-skin-accent transition-colors" />
+                      <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-skin-text">Smart Import Engine</h3>
+                      <p className="text-[9px] sm:text-[10px] text-zinc-500 mt-2">Drop .CSV or .XLSX for Auto-Detection</p>
                       <input type="file" ref={fileInputRef} className="hidden" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} />
                   </div>
                   
@@ -743,8 +743,8 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
       {showHistory && (
         <div className="fixed inset-0 z-[200] flex justify-end">
           <div className="absolute inset-0 bg-black/60 transition-opacity" onClick={() => setShowHistory(false)} />
-          <div className="relative w-full max-w-sm h-full bg-skin-surface border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-in slide-in-from-right duration-300 flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-white/10 bg-black/20">
+          <div className="relative w-full sm:max-w-sm h-full bg-skin-surface border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-in slide-in-from-right duration-300 flex flex-col">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10 bg-black/20">
               <div className="flex items-center gap-3">
                  <div className="p-2 bg-skin-accent/10 rounded-lg"><Clock className="w-5 h-5 text-skin-accent" /></div>
                  <div><h2 className="text-sm font-bold text-skin-text uppercase tracking-wider">Dataset History</h2><p className="text-[10px] text-skin-muted font-mono mt-0.5">Local Storage Cache</p></div>
