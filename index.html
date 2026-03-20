@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StatForge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            skin: {
+              base: 'rgb(var(--color-bg) / <alpha-value>)',
+              surface: 'rgb(var(--color-surface) / <alpha-value>)',
+              accent: 'rgb(var(--color-accent) / <alpha-value>)',
+              'accent-hover': 'rgb(var(--color-accent-hover) / <alpha-value>)',
+              text: 'rgb(var(--color-text-main) / <alpha-value>)',
+              muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
+              border: 'rgb(var(--color-border) / <alpha-value>)',
+            },
+            terminal: {
+              cyan: '#00FFFF',
+              red: '#FF003C',
+              purple: '#BC13FE',
+              gold: '#D4AF37'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Space Mono', 'JetBrains Mono', 'monospace'],
+            display: ['Orbitron', 'sans-serif'],
+          },
+          animation: {
+            'glitch': 'glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite',
+            'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'scanline': 'scanline 8s linear infinite',
+            'marquee': 'marquee 60s linear infinite',
+          },
+          keyframes: {
+            glitch: {
+              '0%': { transform: 'translate(0)' },
+              '20%': { transform: 'translate(-2px, 2px)' },
+              '40%': { transform: 'translate(-2px, -2px)' },
+              '60%': { transform: 'translate(2px, 2px)' },
+              '80%': { transform: 'translate(2px, -2px)' },
+              '100%': { transform: 'translate(0)' },
+            },
+            scanline: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100%)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    :root {
+      --color-bg: 0 0 0;
+      --color-surface: 10 10 12;
+      --color-accent: 0 229 255;
+      --color-accent-hover: 34 211 238;
+      --color-text-main: 228 228 231;
+      --color-text-muted: 113 113 122;
+      --color-border: 63 63 70;
+    }
+    
+    html {
+      background-color: #000000; /* Fallback */
+    }
+
+    body {
+      background-color: transparent; /* KEY FIX: Reveal the fixed background layer */
+      color: rgb(var(--color-text-main));
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Heavy Glassmorphism for Panels */
+    .glass-panel {
+      position: relative;
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    
+    .glass-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2; /* Sit on top to grain everything */
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    .terminal-glass {
+      background: rgba(10, 10, 12, 0.9);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(0, 255, 255, 0.05);
+    }
+    .terminal-glow-cyan {
+      opacity: 1;
+    }
+    .terminal-glow-red {
+      opacity: 1;
+    }
+    .terminal-glow-purple {
+      opacity: 1;
+    }
+    @keyframes scanline {
+      from { top: -100px; }
+      to { top: 100%; }
+    }
+    .scanline-overlay {
+      position: absolute;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.1), transparent);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: scanline 4s linear infinite;
+      z-index: 50;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgb(var(--color-accent));
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(var(--color-accent), 0.5);
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+      body::before, body::after { display: none !important; }
+    }
+    /* Simple Syntax Highlighting for Code Terminal */
+    .token.comment { color: #6272a4; }
+    .token.keyword { color: #ff79c6; font-weight: bold; }
+    .token.string { color: #f1fa8c; }
+    .token.number { color: #bd93f9; }
+    .token.function { color: #50fa7b; }
+    .token.operator { color: #ff79c6; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "lucide-react": "https://esm.sh/lucide-react@^0.574.0",
+      "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+      "react/": "https://esm.sh/react@^19.2.4/",
+      "react": "https://esm.sh/react@^19.2.4",
+      "recharts": "https://esm.sh/recharts@^3.7.0",
+      "xlsx": "https://esm.sh/xlsx@0.18.5",
+      "katex": "https://esm.sh/katex@0.16.9",
+      "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
+      "apexcharts": "https://esm.sh/apexcharts@3.45.1",
+      "framer-motion": "https://esm.sh/framer-motion@11.18.2"
+    }
+  }
+  </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="antialiased selection:bg-terminal-cyan/30 selection:text-terminal-cyan">
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
