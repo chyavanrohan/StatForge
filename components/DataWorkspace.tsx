@@ -16,7 +16,8 @@ import {
   HelpCircle,
   X
 } from 'lucide-react';
-import { FixedSizeList } from 'react-window';
+import * as ReactWindow from 'react-window';
+const List = (ReactWindow as any).FixedSizeList;
 import { DataType, Dataset } from '../types';
 import { FormatGuideModal } from './FormatGuideModal';
 
@@ -384,7 +385,7 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                     {mappings.map((m) => (
                       <div 
                         key={m.index} 
-                        className={`flex-1 px-4 text-[10px] font-bold uppercase tracking-widest truncate ${m.role === 'ignore' ? 'text-skin-muted/40' : 'text-skin-accent'}`}
+                        className={`flex-1 px-4 text-[10px] font-bold uppercase tracking-widest truncate ${m.role === 'ignore' ? 'text-skin-muted' : 'text-skin-accent'}`}
                       >
                         {m.header}
                         {m.role !== 'ignore' && <span className="ml-2 text-[8px] opacity-50">({m.role.toUpperCase()})</span>}
@@ -394,7 +395,7 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                   
                   {/* Virtualized List */}
                   <div className="flex-1">
-                    <FixedSizeList
+                    <List
                       height={400} 
                       itemCount={rawData.length}
                       itemSize={40}
@@ -402,7 +403,7 @@ export const DataWorkspace: React.FC<DataWorkspaceProps> = ({ onDataSubmit, onRe
                       className="custom-scrollbar"
                     >
                       {Row}
-                    </FixedSizeList>
+                    </List>
                   </div>
                 </div>
 

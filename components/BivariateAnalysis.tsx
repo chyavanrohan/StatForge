@@ -34,7 +34,7 @@ const SolverRow: React.FC<{
     <div className="w-full mb-3">
       <div 
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group glass-panel rounded-lg px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-white/[0.04] hover:border-skin-accent/20 transition-colors cursor-pointer"
+        className="group glass-panel rounded-lg px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-skin-surface/40 hover:border-skin-accent/20 transition-colors cursor-pointer"
       >
          <div className="flex items-center gap-4 flex-1">
             {/* Arrow Indicator */}
@@ -44,8 +44,8 @@ const SolverRow: React.FC<{
 
             {/* Index & Title */}
             <div className="flex items-center gap-4 min-w-0">
-               <span className="text-[10px] font-mono text-skin-muted/60 font-bold">{String(index + 1).padStart(2, '0')}</span>
-               <h3 className="text-sm font-semibold text-skin-text/80 group-hover:text-skin-text transition-colors truncate">{title}</h3>
+               <span className="text-[10px] font-mono text-skin-muted font-bold">{String(index + 1).padStart(2, '0')}</span>
+               <h3 className="text-sm font-semibold text-skin-text group-hover:text-skin-text transition-colors truncate">{title}</h3>
             </div>
          </div>
 
@@ -86,7 +86,7 @@ const SolverRow: React.FC<{
                           </div>
                       )}
                    </div>
-                   {description && <p className="text-[10px] text-skin-muted/80 font-mono italic leading-relaxed mt-2">{description}</p>}
+                   {description && <p className="text-[10px] text-skin-muted font-mono italic leading-relaxed mt-2">{description}</p>}
                 </div>
 
                 <div className="space-y-3">
@@ -101,7 +101,7 @@ const SolverRow: React.FC<{
                                   <Search className="w-3 h-3" /> Variable Identification
                               </div>
                               {originExplanations.map((line, i) => (
-                                   <div key={i} className="text-xs text-skin-text/70 font-mono leading-relaxed border-l-2 border-skin-accent/20 pl-2">
+                                   <div key={i} className="text-xs text-skin-text font-mono leading-relaxed border-l-2 border-skin-accent/20 pl-2">
                                       {line}
                                    </div>
                               ))}
@@ -137,9 +137,9 @@ const SolverRow: React.FC<{
                                   <div key={i} className="relative pl-4 border-l border-skin-text/10 pb-2 last:pb-0 last:border-0">
                                       <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-skin-base border border-skin-text/20"></div>
                                       <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 group/step">
-                                          <span className="text-[9px] font-mono text-skin-muted/80 min-w-[30px] select-none">Step {i + 1}:</span>
+                                          <span className="text-[9px] font-mono text-skin-muted min-w-[30px] select-none">Step {i + 1}:</span>
                                           <div className="flex-1 flex items-center justify-between gap-4">
-                                              <div className="text-skin-text/90 text-sm bg-skin-text/5 px-2 py-1 rounded transition-colors border border-transparent group-hover/step:border-skin-text/10">
+                                              <div className="text-skin-text text-sm bg-skin-text/5 px-2 py-1 rounded transition-colors border border-transparent group-hover/step:border-skin-text/10">
                                                   <Formula tex={step.latex} />
                                               </div>
                                               {step.annotation && (
@@ -162,7 +162,7 @@ const SolverRow: React.FC<{
                       <Repeat className="w-3 h-3" /> Result
                    </div>
                    <div className="flex flex-col items-center justify-center h-full gap-4 pb-4">
-                      <div className="text-[9px] font-bold text-skin-muted/60 uppercase tracking-[0.4em]">Final Result</div>
+                      <div className="text-[9px] font-bold text-skin-muted uppercase tracking-[0.4em]">Final Result</div>
                       <div className="relative px-8 py-4 bg-skin-accent/5 border border-skin-accent/20 rounded-xl">
                           <div className="text-4xl font-mono font-black text-skin-accent tabular-nums text-center break-all">
                             <ScrambleText value={answer} />
@@ -302,7 +302,7 @@ export const BivariateAnalysis: React.FC<Props> = ({ dataset }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <MagneticTiltCard className="glass-panel rounded-2xl p-6 flex flex-col gap-4">
-                        <div className="text-[10px] font-black text-skin-muted/60 uppercase tracking-[0.4em]">Node_Summary_X</div>
+                        <div className="text-[10px] font-black text-skin-muted uppercase tracking-[0.4em]">Node_Summary_X</div>
                         <div className="flex items-baseline gap-2">
                             <span className="text-sm font-mono text-skin-muted">Mean (x̄):</span>
                             <ScrambleText value={stats.meanX} className="text-3xl font-mono font-bold text-skin-text tracking-tight" />
@@ -311,7 +311,7 @@ export const BivariateAnalysis: React.FC<Props> = ({ dataset }) => {
                 </div>
                 <div>
                     <MagneticTiltCard className="glass-panel rounded-2xl p-6 flex flex-col gap-4">
-                        <div className="text-[10px] font-black text-skin-muted/60 uppercase tracking-[0.4em]">Node_Summary_Y</div>
+                        <div className="text-[10px] font-black text-skin-muted uppercase tracking-[0.4em]">Node_Summary_Y</div>
                         <div className="flex items-baseline gap-2">
                             <span className="text-sm font-mono text-skin-muted">Mean (ȳ):</span>
                             <ScrambleText value={stats.meanY} className="text-3xl font-mono font-bold text-skin-text tracking-tight" />

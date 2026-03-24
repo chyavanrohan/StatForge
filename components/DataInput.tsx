@@ -551,7 +551,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
             {inputType === DataType.GROUPED_CONTINUOUS && "Lower-Upper: Frequency (e.g. 10-20: 5)"}
             {inputType === DataType.BIVARIATE && "X, Y (e.g. 10, 15)"}
           </div>
-          <div className="text-[9px] text-skin-muted/70 leading-relaxed">
+          <div className="text-[9px] text-skin-muted leading-relaxed">
             {inputType === DataType.UNGROUPED && "Enter raw values separated by commas or spaces."}
             {inputType === DataType.GROUPED_DISCRETE && "Enter each value and its frequency separated by a colon."}
             {inputType === DataType.GROUPED_CONTINUOUS && "Enter class intervals and frequencies (one per line)."}
@@ -578,7 +578,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                 />
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                        <span className="text-[9px] text-skin-muted/60 font-mono font-bold uppercase tracking-widest">{inputType}</span>
+                        <span className="text-[9px] text-skin-muted font-mono font-bold uppercase tracking-widest">{inputType}</span>
                         {inputType !== DataType.BIVARIATE && (
                             <span className="text-[9px] text-skin-accent/50 font-mono bg-skin-accent/10 px-1.5 rounded">N={rawValues.length}</span>
                         )}
@@ -599,7 +599,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                       <div className="absolute inset-0 bg-gradient-to-br from-skin-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                       <FileSpreadsheet className="w-8 h-8 sm:w-10 sm:h-10 text-skin-muted mx-auto mb-4 group-hover:text-skin-accent transition-colors" />
                       <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-skin-text">Smart Import Engine</h3>
-                      <p className="text-[9px] sm:text-[10px] text-skin-muted/60 mt-2">Drop .CSV or .XLSX for Auto-Detection</p>
+                      <p className="text-[9px] sm:text-[10px] text-skin-muted mt-2">Drop .CSV or .XLSX for Auto-Detection</p>
                       <input type="file" ref={fileInputRef} className="hidden" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} />
                   </div>
                   
@@ -620,7 +620,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                       </div>
                       <div>
                         <h3 className="text-xs font-bold text-skin-text uppercase tracking-wider">Column Staging</h3>
-                        <p className="text-[9px] text-skin-muted/60 font-mono">Select columns to map to {inputType.replace(/_/g, ' ')}</p>
+                        <p className="text-[9px] text-skin-muted font-mono">Select columns to map to {inputType.replace(/_/g, ' ')}</p>
                       </div>
                     </div>
                     <button 
@@ -666,7 +666,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                           {stagingData.slice(1, 6).map((row, rowIdx) => (
                             <tr key={rowIdx} className="border-b border-skin-muted/5 last:border-0">
                               {row.map((cell, colIdx) => (
-                                <td key={colIdx} className={`px-4 py-3 text-[10px] font-mono transition-colors ${selectedCols.includes(colIdx) ? 'bg-skin-accent/5 text-skin-accent' : 'text-skin-muted/60'}`}>
+                                <td key={colIdx} className={`px-4 py-3 text-[10px] font-mono transition-colors ${selectedCols.includes(colIdx) ? 'bg-skin-accent/5 text-skin-accent' : 'text-skin-muted'}`}>
                                   {String(cell || '-')}
                                 </td>
                               ))}
@@ -677,7 +677,7 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                     </div>
                     {stagingData.length > 6 && (
                       <div className="p-3 bg-skin-surface/20 text-center border-t border-skin-muted/10">
-                        <span className="text-[9px] text-skin-muted/40 font-mono uppercase tracking-widest">Showing 5 of {stagingData.length - 1} rows</span>
+                        <span className="text-[9px] text-skin-muted font-mono uppercase tracking-widest">Showing 5 of {stagingData.length - 1} rows</span>
                       </div>
                     )}
                   </div>
@@ -688,11 +688,11 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                       <span className="text-[10px] font-bold text-skin-accent uppercase tracking-widest">Smart Cleaning Active</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="flex items-center gap-2 text-[9px] text-skin-muted/60 font-mono">
+                      <div className="flex items-center gap-2 text-[9px] text-skin-muted font-mono">
                         <Filter className="w-3 h-3" />
                         Sanitization: Strip symbols ($, % ,)
                       </div>
-                      <div className="flex items-center gap-2 text-[9px] text-skin-muted/60 font-mono">
+                      <div className="flex items-center gap-2 text-[9px] text-skin-muted font-mono">
                         <ArrowRight className="w-3 h-3" />
                         Rounding: Strictly 2 Decimals
                       </div>
@@ -760,18 +760,18 @@ export const DataInput: React.FC<DataInputProps> = ({ onDataSubmit, currentDatas
                    <div key={item.id} onClick={() => restoreHistoryItem(item)} className="group relative bg-skin-surface/20 border border-skin-muted/10 hover:border-skin-accent/50 rounded-xl p-4 cursor-pointer transition-all hover:bg-skin-surface/40 hover:shadow-lg hover:shadow-skin-accent/5 overflow-hidden">
                       <div className="flex justify-between items-start mb-3">
                          <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded border ${getModeColor(item.mode)}`}>{item.mode.replace(/_/g, ' ')}</span>
-                         <span className="text-[10px] font-mono text-skin-muted/60">{item.dateStr}</span>
+                         <span className="text-[10px] font-mono text-skin-muted">{item.dateStr}</span>
                       </div>
-                      <div className="font-mono text-xs text-skin-muted/80 line-clamp-2 leading-relaxed bg-skin-surface/40 p-2 rounded border border-skin-muted/10 mb-2 group-hover:text-skin-text transition-colors">{item.rawData}</div>
+                      <div className="font-mono text-xs text-skin-muted line-clamp-2 leading-relaxed bg-skin-surface/40 p-2 rounded border border-skin-muted/10 mb-2 group-hover:text-skin-text transition-colors">{item.rawData}</div>
                       <div className="flex items-center justify-between mt-2">
                          <span className="text-[9px] text-skin-accent opacity-0 group-hover:opacity-100 transition-opacity font-bold uppercase tracking-widest flex items-center gap-1"><RotateCcw className="w-3 h-3" /> Restore</span>
-                         <button onClick={(e) => deleteHistoryItem(e, item.id)} className="p-1.5 text-skin-muted/40 hover:text-red-400 hover:bg-red-500/10 rounded-md transition-all opacity-0 group-hover:opacity-100" title="Remove from history"><Trash2 className="w-3.5 h-3.5" /></button>
+                         <button onClick={(e) => deleteHistoryItem(e, item.id)} className="p-1.5 text-skin-muted hover:text-red-400 hover:bg-red-500/10 rounded-md transition-all opacity-0 group-hover:opacity-100" title="Remove from history"><Trash2 className="w-3.5 h-3.5" /></button>
                       </div>
                    </div>
                  ))
                )}
             </div>
-            <div className="p-4 border-t border-skin-muted/10 bg-skin-surface/20 text-center"><span className="text-[9px] text-skin-muted/40 font-mono">Storage: {history.length} / 20 Slots Used</span></div>
+            <div className="p-4 border-t border-skin-muted/10 bg-skin-surface/20 text-center"><span className="text-[9px] text-skin-muted font-mono">Storage: {history.length} / 20 Slots Used</span></div>
           </div>
         </div>
       )}

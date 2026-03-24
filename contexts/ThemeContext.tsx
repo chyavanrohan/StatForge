@@ -33,124 +33,124 @@ const THEMES: Theme[] = [
   {
     id: 'custom',
     name: 'Custom Theme',
-    colors: { bg: '#0a0a0a', surface: '#1a1a1a', text: '#f5f5f5', accent: '#3b82f6', muted: '#737373' }
+    colors: { bg: '#0a0a0a', surface: '#1a1a1a', text: '#f5f5f5', accent: '#3b82f6', muted: '#a3a3a3' }
   },
   // --- Mixed Themes ---
   {
     id: 'oled',
     name: 'OLED Default',
-    colors: { bg: '#000000', surface: '#111111', text: '#E4E4E7', accent: '#00E5FF', muted: '#71717A' }
+    colors: { bg: '#000000', surface: '#0a0a0a', text: '#ffffff', accent: '#00e5ff', muted: '#d4d4d8' }
   },
   {
     id: 'paper',
     name: 'Paper White',
-    colors: { bg: '#ffffff', surface: '#f3f4f6', text: '#111827', accent: '#3b82f6', muted: '#6b7280' }
+    colors: { bg: '#ffffff', surface: '#f3f4f6', text: '#111827', accent: '#3b82f6', muted: '#4b5563' }
   },
   {
     id: 'cyberpunk',
     name: 'Cyberpunk Matrix',
-    colors: { bg: '#020402', surface: '#0D1F12', text: '#00FF41', accent: '#00FF41', muted: '#008F11' }
+    colors: { bg: '#020402', surface: '#0D1F12', text: '#00FF41', accent: '#00FF41', muted: '#00cc33' }
   },
   {
     id: 'gruvbox',
     name: 'Gruvbox Dark',
-    colors: { bg: '#282828', surface: '#3c3836', text: '#ebdbb2', accent: '#fabd2f', muted: '#a89984' }
+    colors: { bg: '#1d2021', surface: '#282828', text: '#fbf1c7', accent: '#fabd2f', muted: '#a89984' }
   },
   {
     id: 'sepia',
     name: 'Soft Sepia',
-    colors: { bg: '#f4ecd8', surface: '#e6dec9', text: '#5b4636', accent: '#8b4513', muted: '#a69076' }
+    colors: { bg: '#f4ecd8', surface: '#e6dec9', text: '#5b4636', accent: '#8b4513', muted: '#8b7355' }
   },
   {
     id: 'dracula',
     name: 'Dracula',
-    colors: { bg: '#282a36', surface: '#44475a', text: '#f8f8f2', accent: '#ff79c6', muted: '#6272a4' }
+    colors: { bg: '#282a36', surface: '#343746', text: '#f8f8f2', accent: '#ff79c6', muted: '#bdc3e1' }
   },
   {
     id: 'matcha',
     name: 'Matcha Latte',
-    colors: { bg: '#f0f4f0', surface: '#e0e8e0', text: '#2d3a2d', accent: '#4a7c44', muted: '#7a8c7a' }
+    colors: { bg: '#f0f4f0', surface: '#e0e8e0', text: '#2d3a2d', accent: '#4a7c44', muted: '#5a6b5a' }
   },
   {
     id: 'nord',
     name: 'Nord',
-    colors: { bg: '#2e3440', surface: '#3b4252', text: '#eceff4', accent: '#88c0d0', muted: '#4c566a' }
+    colors: { bg: '#2e3440', surface: '#3b4252', text: '#eceff4', accent: '#88c0d0', muted: '#a3be8c' }
   },
   {
     id: 'monokai',
     name: 'Monokai Pro',
-    colors: { bg: '#272822', surface: '#3e3d32', text: '#f8f8f2', accent: '#a6e22e', muted: '#75715e' }
+    colors: { bg: '#2d2a2e', surface: '#403e41', text: '#fcfcfa', accent: '#ffd866', muted: '#c1c0c1' }
   },
   {
     id: 'solarized-light',
     name: 'Solarized Light',
-    colors: { bg: '#fdf6e3', surface: '#eee8d5', text: '#657b83', accent: '#268bd2', muted: '#93a1a1' }
+    colors: { bg: '#fdf6e3', surface: '#eee8d5', text: '#657b83', accent: '#268bd2', muted: '#586e75' }
   },
   {
     id: 'solarized',
     name: 'Solarized Dark',
-    colors: { bg: '#002b36', surface: '#073642', text: '#93a1a1', accent: '#2aa198', muted: '#586e75' }
+    colors: { bg: '#002b36', surface: '#073642', text: '#93a1a1', accent: '#2aa198', muted: '#93a1a1' }
   },
   {
     id: 'tokyo',
     name: 'Tokyo Night',
-    colors: { bg: '#1a1b26', surface: '#24283b', text: '#c0caf5', accent: '#7aa2f7', muted: '#565f89' }
+    colors: { bg: '#1a1b26', surface: '#24283b', text: '#c0caf5', accent: '#7aa2f7', muted: '#a9b1d6' }
   },
   {
     id: 'rose',
     name: 'Rose Water',
-    colors: { bg: '#fff5f7', surface: '#ffeef2', text: '#5d3a44', accent: '#e91e63', muted: '#a68a91' }
+    colors: { bg: '#fff5f7', surface: '#ffeef2', text: '#4a2d36', accent: '#e91e63', muted: '#6d4c56' }
   },
   {
     id: 'nord-light',
     name: 'Nord Light',
-    colors: { bg: '#e5e9f0', surface: '#d8dee9', text: '#2e3440', accent: '#5e81ac', muted: '#4c566a' }
+    colors: { bg: '#e5e9f0', surface: '#d8dee9', text: '#2e3440', accent: '#5e81ac', muted: '#2e3440' }
   },
   {
     id: 'synthwave',
     name: 'Synthwave 84',
-    colors: { bg: '#2b213a', surface: '#241b2f', text: '#fffb96', accent: '#ff71ce', muted: '#5c5470' }
+    colors: { bg: '#2b213a', surface: '#1f1929', text: '#f0efff', accent: '#ff71ce', muted: '#b5b1d1' }
   },
   {
     id: 'vercel',
     name: 'Vercel Dark',
-    colors: { bg: '#000000', surface: '#111111', text: '#ffffff', accent: '#ffffff', muted: '#444444' }
+    colors: { bg: '#000000', surface: '#111111', text: '#ffffff', accent: '#ffffff', muted: '#888888' }
   },
   {
     id: 'oceanic',
     name: 'Oceanic Next',
-    colors: { bg: '#1B2B34', surface: '#343D46', text: '#D8DEE9', accent: '#6699CC', muted: '#65737E' }
+    colors: { bg: '#1b2b34', surface: '#343d46', text: '#d8dee9', accent: '#6699cc', muted: '#c0c5ce' }
   },
   {
     id: 'firewatch',
     name: 'Firewatch',
-    colors: { bg: '#1C1315', surface: '#2D1F22', text: '#EAE1DC', accent: '#EB5E28', muted: '#7D6B66' }
+    colors: { bg: '#1c1315', surface: '#2d1f22', text: '#eae1dc', accent: '#eb5e28', muted: '#d6c9c4' }
   },
   // --- High-Contrast & Terminal Themes ---
   {
     id: 'phosphor-amber',
     name: 'Phosphor Amber',
-    colors: { bg: '#100C03', surface: '#1F1805', text: '#FFB000', accent: '#FFCC00', muted: '#996600' }
+    colors: { bg: '#100C03', surface: '#1F1805', text: '#FFB000', accent: '#FFCC00', muted: '#cc8800' }
   },
   {
     id: 'crimson-ops',
     name: 'Crimson Ops',
-    colors: { bg: '#0A0202', surface: '#1A0505', text: '#FF8888', accent: '#FF0033', muted: '#882222' }
+    colors: { bg: '#0A0202', surface: '#1A0505', text: '#FF8888', accent: '#FF0033', muted: '#ff4444' }
   },
   {
     id: 'blueprint',
     name: 'Blueprint',
-    colors: { bg: '#0D1B2A', surface: '#1B263B', text: '#E0E1DD', accent: '#4CC9F0', muted: '#415A77' }
+    colors: { bg: '#0d1b2a', surface: '#1b263b', text: '#e0e1dd', accent: '#4cc9f0', muted: '#a9bccd' }
   },
   {
     id: 'toxic',
     name: 'Toxic Waste',
-    colors: { bg: '#080A04', surface: '#141A0A', text: '#D4FF80', accent: '#A6FF00', muted: '#5C7A29' }
+    colors: { bg: '#080A04', surface: '#141A0A', text: '#D4FF80', accent: '#A6FF00', muted: '#88b039' }
   },
   {
     id: 'powershell',
     name: 'PowerShell',
-    colors: { bg: '#012456', surface: '#003B73', text: '#FFFFFF', accent: '#F9F1A5', muted: '#A0B0C0' }
+    colors: { bg: '#012456', surface: '#003B73', text: '#FFFFFF', accent: '#F9F1A5', muted: '#cccccc' }
   },
   {
     id: 'zenith',
@@ -160,22 +160,22 @@ const THEMES: Theme[] = [
   {
     id: 'miami-nights',
     name: 'Miami Nights',
-    colors: { bg: '#0D0E15', surface: '#181924', text: '#00F0FF', accent: '#FF0055', muted: '#7F2F6F' }
+    colors: { bg: '#0d0e15', surface: '#161821', text: '#e0faff', accent: '#ff0055', muted: '#bdbfe3' }
   },
   {
     id: 'forest',
     name: 'Deep Forest',
-    colors: { bg: '#0C120C', surface: '#162616', text: '#C2E0C2', accent: '#2ECC71', muted: '#4A6B4A' }
+    colors: { bg: '#0c120c', surface: '#162616', text: '#c2e0c2', accent: '#2ecc71', muted: '#a8c1a8' }
   },
   {
     id: 'royal',
     name: 'Royal Void',
-    colors: { bg: '#0D0814', surface: '#1A1029', text: '#EBD9FF', accent: '#9D4EDD', muted: '#583D72' }
+    colors: { bg: '#0d0814', surface: '#1a1029', text: '#ebd9ff', accent: '#9d4edd', muted: '#c4b1d9' }
   },
   {
     id: 'volcano',
     name: 'Volcanic Ash',
-    colors: { bg: '#120505', surface: '#240A0A', text: '#E8D5D5', accent: '#FF4500', muted: '#7A3333' }
+    colors: { bg: '#120505', surface: '#240a0a', text: '#e8d5d5', accent: '#ff4500', muted: '#d1b8b8' }
   }
 ];
 

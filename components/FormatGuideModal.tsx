@@ -137,7 +137,7 @@ export const FormatGuideModal: React.FC<FormatGuideModalProps> = ({ isOpen, onCl
                           {template.rows.map((row, i) => (
                             <tr key={i} className="border-b border-skin-muted/5 last:border-0 group-hover:bg-skin-surface/20 transition-colors">
                               {row.map((cell, j) => (
-                                <td key={j} className="px-5 py-3 text-xs font-mono text-skin-muted/80">
+                                <td key={j} className="px-5 py-3 text-xs font-mono text-skin-muted">
                                   {cell}
                                 </td>
                               ))}
@@ -156,7 +156,7 @@ export const FormatGuideModal: React.FC<FormatGuideModalProps> = ({ isOpen, onCl
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-sm font-bold text-skin-accent uppercase tracking-wider">Pro Tip: Auto-Detection</h4>
-                  <p className="text-xs text-skin-muted/80 leading-relaxed max-w-2xl">
+                  <p className="text-xs text-skin-muted leading-relaxed max-w-2xl">
                     StatForge uses a smart algorithm to detect your data type based on column count, headers, and content patterns. For best results, use the headers shown above (e.g., <code className="text-skin-accent bg-skin-surface/40 px-1.5 py-0.5 rounded font-mono">X</code> and <code className="text-skin-accent bg-skin-surface/40 px-1.5 py-0.5 rounded font-mono">Y</code> for Bivariate analysis).
                   </p>
                 </div>

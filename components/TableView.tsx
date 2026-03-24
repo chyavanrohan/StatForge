@@ -31,7 +31,7 @@ export const TableView: React.FC<TableProps> = ({ headers, rows, footer, caption
 
   return (
     <div className="w-full h-full flex flex-col bg-skin-base animate-in fade-in duration-300">
-      <div className="flex-none p-3 sm:p-4 bg-skin-surface border border-white/5 rounded-t-xl flex justify-between items-center mb-1">
+      <div className="flex-none p-3 sm:p-4 bg-skin-surface border border-skin-text/5 rounded-t-xl flex justify-between items-center mb-1">
           <div className="flex items-center gap-2 sm:gap-3">
              <h3 className="text-base sm:text-lg font-bold text-skin-text tracking-wide truncate max-w-[150px] sm:max-w-none">{caption}</h3>
              <span className="px-2 py-0.5 rounded-full bg-skin-accent/10 text-skin-accent text-[10px] sm:text-xs font-mono font-bold">
@@ -44,15 +44,15 @@ export const TableView: React.FC<TableProps> = ({ headers, rows, footer, caption
           </div>
       </div>
 
-      <div className="flex-1 overflow-auto custom-scrollbar border border-white/5 rounded-b-xl bg-black/20">
+      <div className="flex-1 overflow-auto custom-scrollbar border border-skin-text/5 rounded-b-xl bg-skin-base/20">
         <table className="min-w-full text-left border-collapse table-auto">
-          <thead className="bg-skin-surface sticky top-0 z-20 shadow-lg shadow-black/20">
+          <thead className="bg-skin-surface sticky top-0 z-20 shadow-lg shadow-skin-base/20">
             <tr>
-              <th className="px-1 sm:px-4 py-3 sm:py-4 text-[9px] sm:text-[10px] font-mono text-skin-muted uppercase tracking-widest border-b border-white/10 w-10 sm:w-16 text-center bg-skin-surface">
+              <th className="px-1 sm:px-4 py-3 sm:py-4 text-[9px] sm:text-[10px] font-mono text-skin-muted uppercase tracking-widest border-b border-skin-text/10 w-10 sm:w-16 text-center bg-skin-surface">
                 #
               </th>
               {headers.map((h, i) => (
-                <th key={i} className="group relative px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm sm:text-base font-bold font-mono text-skin-accent border-b border-white/10 bg-skin-surface hover:bg-white/5 transition-colors min-w-[60px]">
+                <th key={i} className="group relative px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm sm:text-base font-bold font-mono text-skin-accent border-b border-skin-text/10 bg-skin-surface hover:bg-skin-text/5 transition-colors min-w-[60px]">
                    <div className="flex flex-col items-center gap-1 cursor-help w-fit mx-auto relative">
                       <div className="border-b-2 border-dotted border-skin-accent/30 pb-1 group-hover:border-skin-accent transition-colors duration-300">
                           <Formula tex={h} />
@@ -69,7 +69,7 @@ export const TableView: React.FC<TableProps> = ({ headers, rows, footer, caption
                         `}>
                             <div className={`absolute bottom-full border-8 border-transparent border-b-skin-accent/20 ${i === 0 ? 'left-6' : i === headers.length - 1 ? 'right-6' : 'left-1/2 -translate-x-1/2'}`}></div>
                             <div className={`absolute bottom-full mb-[-1px] border-8 border-transparent border-b-skin-surface ${i === 0 ? 'left-6' : i === headers.length - 1 ? 'right-6' : 'left-1/2 -translate-x-1/2'}`}></div>
-                            <div className="flex items-center gap-3 mb-3 pb-2 border-b border-white/10">
+                            <div className="flex items-center gap-3 mb-3 pb-2 border-b border-skin-text/10">
                                 <div className="p-2 bg-skin-accent/10 rounded-md flex items-center justify-center min-w-[32px]">
                                   <Formula tex={h} className="text-skin-accent text-sm" />
                                 </div>
@@ -83,12 +83,12 @@ export const TableView: React.FC<TableProps> = ({ headers, rows, footer, caption
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/[0.04]">
+          <tbody className="divide-y divide-skin-text/5">
             {processedRows.map((item) => {
               if (item.type === 'gap') {
                   return (
                       <tr key="gap" className="bg-skin-surface/10">
-                          <td className="px-4 py-4 text-center border-r border-white/5">
+                          <td className="px-4 py-4 text-center border-r border-skin-text/5">
                               <div className="w-1 h-6 mx-auto border-l-2 border-dotted border-skin-muted/30"></div>
                           </td>
                           <td colSpan={headers.length} className="px-6 py-4 text-center text-xs text-skin-muted font-mono italic">
@@ -98,12 +98,12 @@ export const TableView: React.FC<TableProps> = ({ headers, rows, footer, caption
                   );
               }
               return (
-                  <tr key={item.index} className="hover:bg-white/[0.03] transition-colors group" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 40px' }}>
-                  <td className="px-1 sm:px-4 py-2 font-mono text-[10px] sm:text-xs text-skin-muted text-center border-r border-white/5 bg-black/10 group-hover:text-skin-text">
+                  <tr key={item.index} className="hover:bg-skin-text/5 transition-colors group" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 40px' }}>
+                  <td className="px-1 sm:px-4 py-2 font-mono text-[10px] sm:text-xs text-skin-muted text-center border-r border-skin-text/5 bg-skin-base/10 group-hover:text-skin-text">
                       {item.index + 1}
                   </td>
                   {item.data.map((cell, j) => (
-                      <td key={j} className="px-2 sm:px-6 py-2 font-mono text-skin-text text-xs sm:text-sm tabular-nums border-r border-white/5 last:border-0 whitespace-nowrap min-w-[60px] text-center">
+                      <td key={j} className="px-2 sm:px-6 py-2 font-mono text-skin-text text-xs sm:text-sm tabular-nums border-r border-skin-text/5 last:border-0 whitespace-nowrap min-w-[60px] text-center">
                       {typeof cell === 'number' ? (
                           <span className={cell < 0 ? 'text-orange-300' : ''}>
                              {cell.toFixed(4).replace(/\.?0+$/, '')}

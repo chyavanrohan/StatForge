@@ -154,7 +154,7 @@ export const SettingsMenu: React.FC = () => {
                   ref={inputRef}
                   type="text"
                   placeholder="Search themes..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 sm:py-3 pl-11 pr-4 text-sm text-skin-text placeholder:text-skin-muted/50 outline-none focus:border-skin-accent/50 transition-colors font-mono"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 sm:py-3 pl-11 pr-4 text-sm text-skin-text placeholder:text-skin-muted outline-none focus:border-skin-accent/50 transition-colors font-mono"
                   value={searchQuery}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);

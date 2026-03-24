@@ -160,7 +160,7 @@ export const SplashScreen: React.FC<SplashProps> = ({ onFinish }) => {
           font-family: 'Inter', sans-serif;
           font-weight: 800;
           font-size: 3rem;
-          color: white;
+          color: rgb(var(--color-text-main));
           letter-spacing: -0.02em;
           margin-top: 1rem;
           opacity: 0;

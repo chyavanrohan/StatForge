@@ -39,8 +39,8 @@ const SolverRow: React.FC<{
 
             {/* Index & Title */}
             <div className="flex items-center gap-4 min-w-0">
-               <span className="text-[10px] font-mono text-skin-muted/60 font-bold">{String(index + 1).padStart(2, '0')}</span>
-               <h3 className="text-sm font-semibold text-skin-text/80 group-hover:text-skin-text transition-colors">{title}</h3>
+               <span className="text-[10px] font-mono text-skin-muted font-bold">{String(index + 1).padStart(2, '0')}</span>
+               <h3 className="text-sm font-semibold text-skin-text group-hover:text-skin-text transition-colors">{title}</h3>
             </div>
          </div>
 
@@ -90,7 +90,7 @@ const SolverRow: React.FC<{
                                   <Search className="w-3 h-3" /> Variable Identification
                               </div>
                               {originExplanations.map((line, i) => (
-                                   <div key={i} className="text-xs text-skin-text/70 font-mono leading-relaxed border-l-2 border-skin-accent/20 pl-2">
+                                   <div key={i} className="text-xs text-skin-text font-mono leading-relaxed border-l-2 border-skin-accent/20 pl-2">
                                       {line}
                                    </div>
                               ))}
@@ -123,9 +123,9 @@ const SolverRow: React.FC<{
                                       <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-skin-base border border-skin-text/20"></div>
                                       
                                       <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 group/step">
-                                          <span className="text-[9px] font-mono text-skin-muted/80 min-w-[30px] select-none">Step {i + 1}:</span>
+                                          <span className="text-[9px] font-mono text-skin-muted min-w-[30px] select-none">Step {i + 1}:</span>
                                           <div className="flex-1 flex items-center justify-between gap-4">
-                                              <div className="text-skin-text/90 text-sm bg-skin-text/5 px-2 py-1 rounded transition-colors border border-transparent group-hover/step:border-skin-text/10">
+                                              <div className="text-skin-text text-sm bg-skin-text/5 px-2 py-1 rounded transition-colors border border-transparent group-hover/step:border-skin-text/10">
                                                   <Formula tex={step.latex} />
                                               </div>
                                               {/* Annotation Tag */}
@@ -149,7 +149,7 @@ const SolverRow: React.FC<{
                       <Repeat className="w-3 h-3" /> Result
                    </div>
                    <div className="flex flex-col items-center justify-center h-full gap-4 pb-4">
-                      <div className="text-[9px] font-bold text-skin-muted/60 uppercase tracking-[0.4em]">Final_Output</div>
+                      <div className="text-[9px] font-bold text-skin-muted uppercase tracking-[0.4em]">Final_Output</div>
                       <div className="relative px-8 py-4 bg-skin-accent/5 border border-skin-accent/20 rounded-xl">
                          <div className="text-5xl font-mono font-black text-skin-accent tabular-nums">
                           <ScrambleText value={answer} />

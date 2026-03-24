@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import ApexCharts from 'apexcharts';
 import { Dataset, DataType, BivariateDataPoint, UngroupedDataPoint, GroupedContinuousDataPoint, GroupedDiscreteDataPoint } from '../types';
 import { useTheme } from '../contexts/ThemeContext';
@@ -11,10 +11,31 @@ interface Props {
   className?: string;
 }
 
+const hexToRgba = (hex: string, opacity: number) => {
+  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result 
+    ? `rgba(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}, ${opacity})`
+    : `rgba(0, 0, 0, ${opacity})`;
+};
+
 export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, className = '' }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<ApexCharts | null>(null);
-  const { colors, currentTheme } = useTheme();
+  const { colors } = useTheme();
+
+  const isDark = useMemo(() => {
+    const hexToRgb = (hex: string): string => {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? `${parseInt(result[1], 16)} ${parseInt(result[2], 16)} ${parseInt(result[3], 16)}` : '0 0 0';
+    };
+    const rgb = hexToRgb(colors.bg).split(' ').map(Number);
+    const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+    return brightness <= 155;
+  }, [colors.bg]);
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -47,18 +68,18 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
         fontFamily: 'Space Mono, monospace',
       },
       theme: {
-        mode: currentTheme.mode,
+        mode: isDark ? 'dark' : 'light',
         palette: 'palette1',
       },
       grid: {
-        borderColor: `rgba(${colors.text}, 0.05)`,
+        borderColor: hexToRgba(colors.text, 0.05),
         strokeDashArray: 4,
         xaxis: { lines: { show: true } },   
         yaxis: { lines: { show: true } },
       },
       dataLabels: { enabled: false },
       tooltip: {
-        theme: currentTheme.mode,
+        theme: isDark ? 'dark' : 'light',
         style: { fontSize: '12px' },
         x: { show: true },
         marker: { show: true },
@@ -140,18 +161,18 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
             strokeWidth: 0,
             hover: { size: 9 }
         },
-        colors: [currentTheme.mode === 'dark' ? '#FFFFFF' : colors.text, colors.accent], // Points white/text, Line accent
+        colors: [isDark ? '#FFFFFF' : colors.text, colors.accent], // Points white/text, Line accent
         xaxis: {
             type: 'numeric',
             tickAmount: 10,
-            labels: { style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' } },
+            labels: { style: { colors: hexToRgba(colors.text, 0.5), fontSize: '10px' } },
             axisBorder: { show: false },
             axisTicks: { show: false },
             tooltip: { enabled: false }
         },
         yaxis: {
             tickAmount: 7,
-            labels: { style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' } },
+            labels: { style: { colors: hexToRgba(colors.text, 0.5), fontSize: '10px' } },
         }
       };
     } 
@@ -227,14 +248,14 @@ export const CinematicChart: React.FC<Props> = React.memo(({ dataset, title, cla
         xaxis: {
             categories: categories,
             labels: {
-                style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' },
+                style: { colors: hexToRgba(colors.text, 0.5), fontSize: '10px' },
                 rotate: -45
             },
             axisBorder: { show: false },
             axisTicks: { show: false }
         },
         yaxis: {
-            labels: { style: { colors: `rgba(${colors.text}, 0.5)`, fontSize: '10px' } }
+            labels: { style: { colors: hexToRgba(colors.text, 0.5), fontSize: '10px' } }
         }
       };
     }
